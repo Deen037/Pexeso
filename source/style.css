@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+    display: flex;
+    align-items: left;
+}
+
+img {
+    width: 200px;
+    height: 150px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+#side {
+    color: antiquewhite;
+    padding-left: 20px;
+    width: 200px;
+}
+
+#player1{
+    color: antiquewhite;
+}
+
+label {
+    color: aliceblue;
+}
+
+#input1,#input2{
+  height: 20px;
+}
+
+#hra{
+    display: inline-flex;
+}
