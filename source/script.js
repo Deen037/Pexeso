@@ -1,84 +1,84 @@
-/*var pole1 = document.getElementById("pole1");
-var pole2 = document.getElementById("pole2");
-var pole3 = document.getElementById("pole3");
-var pole4 = document.getElementById("pole4");
-var pole5 = document.getElementById("pole5");
-var pole6 = document.getElementById("pole6");
-var pole7 = document.getElementById("pole7");
-var pole8 = document.getElementById("pole8");
-var pole9 = document.getElementById("pole9");
-var pole10 = document.getElementById("pole10");
-var pole11 = document.getElementById("pole11");
-var pole12 = document.getElementById("pole12");
-var pole13 = document.getElementById("pole13");
-var pole14 = document.getElementById("pole14");
-var pole15 = document.getElementById("pole15");
-var pole16 = document.getElementById("pole16");
-var pole17 = document.getElementById("pole17");
-var pole18 = document.getElementById("pole18");
-var pole19 = document.getElementById("pole19");
-var pole20 = document.getElementById("pole20");*/
+const pole1 = document.getElementById("pole1");
+const pole2 = document.getElementById("pole2");
+const pole3 = document.getElementById("pole3");
+const pole4 = document.getElementById("pole4");
+const pole5 = document.getElementById("pole5");
+const pole6 = document.getElementById("pole6");
+const pole7 = document.getElementById("pole7");
+const pole8 = document.getElementById("pole8");
+const pole9 = document.getElementById("pole9");
+const pole10 = document.getElementById("pole10");
+const pole11 = document.getElementById("pole11");
+const pole12 = document.getElementById("pole12");
+const pole13 = document.getElementById("pole13");
+const pole14 = document.getElementById("pole14");
+const pole15 = document.getElementById("pole15");
+const pole16 = document.getElementById("pole16");
+const pole17 = document.getElementById("pole17");
+const pole18 = document.getElementById("pole18");
+const pole19 = document.getElementById("pole19");
+const pole20 = document.getElementById("pole20");
 
-//var player1txt = document.createTextNode("Krasavec");
+//const player1txt = document.createTextNode("Krasavec");
 //player1.appendChild(player1txt);
 
-var logo = "./source/logo200x200/logo.jpg";
-var ok = "./source/logo200x200/done.jpg"
-var Maka = {
+const logo = "./source/logo200x200/logo.jpg";
+const ok = "./source/logo200x200/done.jpg"
+const Maka = {
     meno: "Maka",
     zdroj: "./source/foto200x150/maka.jpg",
     x: 0,
     y: 1
 }; 
-var Kaka = {
+const Kaka = {
     meno: "Kaka",
     zdroj: "./source/foto200x150/kaka.jpg",
     x: 2,
     y: 3
 }; 
-var Andy = {
+const Andy = {
     meno: "Andy",
     zdroj: "./source/foto200x150/andy.jpg",
     x: 4,
     y: 5
 };
-var Dano = {
+const Dano = {
     meno: "Dano",
     zdroj: "./source/foto200x150/dano.jpg",
     x: 6,
     y: 7
 };
-var Danca = {
+const Danca = {
     meno: "Danca",
     zdroj: "./source/foto200x150/danca.jpg",
     x: 8,
     y: 9
 };
-var Fero = {
+const Fero = {
     meno: "Fero",
     zdroj: "./source/foto200x150/fero.jpg",
     x: 10,
     y: 11
 };
-var Miro = {
+const Miro = {
     meno: "Miro",
     zdroj: "./source/foto200x150/miro.jpg",
     x: 12,
     y: 13
 };
-var Pitkin = {
+const Pitkin = {
     meno: "Pitkin",
     zdroj: "./source/foto200x150/pitkin.jpg",
     x: 14,
     y: 15
 };
-var Wahe = {
+const Wahe = {
     meno: "Wahe",
     zdroj: "./source/foto200x150/wahe.jpg",
     x: 16,
     y: 17
 };
-var Oli = {
+const Oli = {
     meno: "Oli",
     zdroj: "./source/foto200x150/oli.jpg",
     x: 18,
@@ -86,16 +86,16 @@ var Oli = {
 };
 
 
-var player1 = document.getElementById("player1")
-var sub1 = document.getElementById("input1sub");
-var p1val = document.getElementById("input1");
-var player2 = document.getElementById("player2");
-var sub2 = document.getElementById("input2sub");
-var p2val = document.getElementById("input2");
-var hide1 = document.getElementById("hide1");
-var hide2 = document.getElementById("hide2");
-var show1 = document.getElementById("p1");
-var show2 = document.getElementById("p2");
+const player1 = document.getElementById("player1")
+const sub1 = document.getElementById("input1sub");
+const p1val = document.getElementById("input1");
+const player2 = document.getElementById("player2");
+const sub2 = document.getElementById("input2sub");
+const p2val = document.getElementById("input2");
+const hide1 = document.getElementById("hide1");
+const hide2 = document.getElementById("hide2");
+const show1 = document.getElementById("p1");
+const show2 = document.getElementById("p2");
 
 let hrac1 = "";
 const player1name = (x) => {
@@ -120,26 +120,39 @@ const player2name = (x) => {
 };
 
 klikNum=0;
+p1val.addEventListener("keypress", function(value) {
+    if(value.key === "Enter") {
+        value.preventDefault();
+        player1name();
+    }}
+);
 sub1.addEventListener("click", player1name);
+
+p2val.addEventListener("keypress", function(value) {
+    if(value.key === "Enter") {
+        value.preventDefault();
+        player2name();
+    }}
+);
 sub2.addEventListener("click", player2name);
 
 const pridajScore1 = (score)=> {
-    var score1 = document.getElementById("skore1");
+    const score1 = document.getElementById("skore1");
     score1.innerHTML = score;
 };
 
 const pridajMeno1 = (mena) => {
-    var team1 = document.getElementById("team1");
+    const team1 = document.getElementById("team1");
     team1.innerHTML = mena;
 };
 
 const pridajScore2 = (score)=> {
-    var score1 = document.getElementById("skore2");
+    const score1 = document.getElementById("skore2");
     score1.innerHTML = score;
 };
 
 const pridajMeno2 = (mena) => {
-    var team1 = document.getElementById("team2");
+    const team1 = document.getElementById("team2");
     team1.innerHTML = mena;
 };
 
