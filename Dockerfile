@@ -1,12 +1,11 @@
 # Use an official Nginx runtime as a parent image
 FROM nginx:alpine
 
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy the current directory contents into the container at /usr/share/nginx/html
 COPY . /usr/share/nginx/html
 
-# Expose port 80
-EXPOSE 80
-
 # Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
-
+CMD /bin/sh -c "envsubst '\$PORT' < /etc/nginx/nginx.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
