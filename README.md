@@ -5,3 +5,4 @@
 
 - now experimenting with google cloud
 - trigger
+- umrem z toho uz
