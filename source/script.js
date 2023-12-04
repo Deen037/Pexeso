@@ -1,4 +1,6 @@
-const themeKey = window.prompt("Please enter keycode: ");
+let themeKey = window.prompt("Please enter keycode: ");
+themeKey = themeKey.toLowerCase();
+
 const themes = {
   bds: {
     1: { name: "Máka", img: "./source/bds/maka.jpg" },
@@ -47,8 +49,6 @@ for (let i = 1; i <= 20; i++) {
   }
 }
 
-console.log(themes[themeKey][11].img);
-
 for (let i = 1; i <= 12; i++) {
   cards[i - 1] = {
     name: `${themes[themeKey][i].name}`,
@@ -60,10 +60,10 @@ for (let i = 1; i <= 12; i++) {
   }
 }
 
-const player1 = document.getElementById("player1");
+const player1div = document.getElementById("player1");
 const sub1 = document.getElementById("input1sub");
 const p1val = document.getElementById("input1");
-const player2 = document.getElementById("player2");
+const player2div = document.getElementById("player2");
 const sub2 = document.getElementById("input2sub");
 const p2val = document.getElementById("input2");
 const hide1 = document.getElementById("hide1");
@@ -71,26 +71,26 @@ const hide2 = document.getElementById("hide2");
 const show1 = document.getElementById("p1");
 const show2 = document.getElementById("p2");
 
-let hrac1 = "";
+let player1 = "";
 const player1name = (x) => {
-  player1.innerHTML = p1val.value;
+  player1div.innerHTML = p1val.value;
   if (p1val.value) {
     hide1.style.display = "none";
     show1.style.display = "inline";
   }
-  hrac1 = player1.innerHTML;
-  return hrac1;
+  player1 = player1div.innerHTML;
+  return player1;
 };
 
-let hrac2 = "";
+let player2 = "";
 const player2name = (x) => {
-  player2.innerHTML = p2val.value;
+  player2div.innerHTML = p2val.value;
   if (p2val.value) {
     hide2.style.display = "none";
     show2.style.display = "inline";
   }
-  hrac2 = player2.innerHTML;
-  return hrac2;
+  player2 = player2div.innerHTML;
+  return player2;
 };
 
 klikNum = 0;
@@ -132,12 +132,12 @@ const pridajMeno2 = (mena) => {
 
 const farby = (x) => {
   if (x <= 0) {
-    player1.style.color = "red";
-    player2.style.color = "white";
+    player1div.style.color = "red";
+    player2div.style.color = "white";
   }
   if (x === 1) {
-    player2.style.color = "red";
-    player1.style.color = "white";
+    player2div.style.color = "red";
+    player1div.style.color = "white";
   }
 };
 
@@ -177,8 +177,6 @@ const arrayNames = () => {
   }
 };
 arrayNames();
-console.log(poleNames);
-console.log(poleNames[1]);
 
 let matchPath = "";
 let a = {}; // premenna v uhadnutom poli
@@ -204,12 +202,12 @@ const match = (pole, meno) => {
     u.push(b);
     if (striedanie === 0) {
       s1++;
-      poleMien1.push(` ${menomatch.meno}`);
+      poleMien1.push(` ${menomatch}`);
       pridajScore1(s1);
       pridajMeno1(poleMien1);
     } else {
       s2++;
-      poleMien2.push(` ${menomatch.meno}`);
+      poleMien2.push(` ${menomatch}`);
       pridajScore2(s2);
       pridajMeno2(poleMien2);
     }
@@ -253,11 +251,11 @@ const znova = (pole) => {
 
   if (u[19]) {
     if (s1 > s2) {
-      alert(`${hrac1} is ej WINNERRRR`);
+      alert(player1 ? `${player1} wins` : "Player 1 wins");
     } else if (s1 === s2) {
-      alert(`REMIIIIZA`);
+      alert(`tie`);
     } else {
-      alert(`${hrac2} is ej WINNERRRR`);
+      alert(player2 ? `${player2} wins` : "Player 2 wins");
     }
   }
 
@@ -271,7 +269,7 @@ function klik() {
     (function (i) {
       poles[i].onclick = () => {
         poles[i].src = poleNames[i - 1].img;
-        match(poles[i], poleNames[i - 1]);
+        match(poles[i], poleNames[i - 1].name);
         znova(poles[i]);
       };
     })(i);
