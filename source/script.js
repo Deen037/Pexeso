@@ -1,89 +1,47 @@
-const pole1 = document.getElementById("pole1");
-const pole2 = document.getElementById("pole2");
-const pole3 = document.getElementById("pole3");
-const pole4 = document.getElementById("pole4");
-const pole5 = document.getElementById("pole5");
-const pole6 = document.getElementById("pole6");
-const pole7 = document.getElementById("pole7");
-const pole8 = document.getElementById("pole8");
-const pole9 = document.getElementById("pole9");
-const pole10 = document.getElementById("pole10");
-const pole11 = document.getElementById("pole11");
-const pole12 = document.getElementById("pole12");
-const pole13 = document.getElementById("pole13");
-const pole14 = document.getElementById("pole14");
-const pole15 = document.getElementById("pole15");
-const pole16 = document.getElementById("pole16");
-const pole17 = document.getElementById("pole17");
-const pole18 = document.getElementById("pole18");
-const pole19 = document.getElementById("pole19");
-const pole20 = document.getElementById("pole20");
+let poles = {};
+let cards = [];
+for (let i = 1; i <= 20; i++) {
+  poles["pole" + i] = document.getElementById("pole" + i);
+  if (i < 12) {
+    cards[i] = {};
+  }
+}
 
-//const player1txt = document.createTextNode("Krasavec");
-//player1.appendChild(player1txt);
+const themes = {
+  bds: {
+    1: { name: "Máka", img: "./bds/maka.jpg" },
+    2: { name: "Káka", img: "./bds/kaka.jpg" },
+    3: { name: "Andy", img: "./bds/andy.jpg" },
+    4: { name: "Dano", img: "./bds/dano.jpg" },
+    5: { name: "Danča", img: "./bds/danca.jpg" },
+    6: { name: "Fero", img: "./bds/fero.jpg" },
+    7: { name: "Miro", img: "./bds/miro.jpg" },
+    8: { name: "Pitkin", img: "./bds/pitkin.jpg" },
+    9: { name: "Wahe", img: "./bds/wahe.jpg" },
+    10: { name: "Oli", img: "./bds/oli.jpg" },
+    11: { name: "cover", img: "./bds/logo.jpg" },
+    12: { name: "done", img: "./bds/done.jpg" },
+  },
+};
+
+const themeInput = document.getElementById("themeInput");
+const themeKey = "bds"; //themeInput.value
 
 const logo = "./source/logo200x200/logo.jpg";
 const ok = "./source/logo200x200/done.jpg";
-const Maka = {
-  meno: "Maka",
-  zdroj: "./source/foto200x150/maka.jpg",
-  x: 0,
-  y: 1,
-};
-const Kaka = {
-  meno: "Kaka",
-  zdroj: "./source/foto200x150/kaka.jpg",
-  x: 2,
-  y: 3,
-};
-const Andy = {
-  meno: "Andy",
-  zdroj: "./source/foto200x150/andy.jpg",
-  x: 4,
-  y: 5,
-};
-const Dano = {
-  meno: "Dano",
-  zdroj: "./source/foto200x150/dano.jpg",
-  x: 6,
-  y: 7,
-};
-const Danca = {
-  meno: "Danca",
-  zdroj: "./source/foto200x150/danca.jpg",
-  x: 8,
-  y: 9,
-};
-const Fero = {
-  meno: "Fero",
-  zdroj: "./source/foto200x150/fero.jpg",
-  x: 10,
-  y: 11,
-};
-const Miro = {
-  meno: "Miro",
-  zdroj: "./source/foto200x150/miro.jpg",
-  x: 12,
-  y: 13,
-};
-const Pitkin = {
-  meno: "Pitkin",
-  zdroj: "./source/foto200x150/pitkin.jpg",
-  x: 14,
-  y: 15,
-};
-const Wahe = {
-  meno: "Wahe",
-  zdroj: "./source/foto200x150/wahe.jpg",
-  x: 16,
-  y: 17,
-};
-const Oli = {
-  meno: "Oli",
-  zdroj: "./source/foto200x150/oli.jpg",
-  x: 18,
-  y: 19,
-};
+
+for (let i = 1; i <= 12; i++) {
+  cards[i - 1] = {
+    name: `${themes[themeKey][i].name}`,
+    img: `${themes[themeKey][i].img}`,
+  };
+  if (i < 11) {
+    cards[i - 1].x = (i - 1) * 2;
+    cards[i - 1].y = (i - 1) * 2 + 1;
+  }
+}
+
+console.log(cards);
 
 const player1 = document.getElementById("player1");
 const sub1 = document.getElementById("input1sub");
@@ -460,3 +418,32 @@ const klik = () => {
 };
 
 klik();
+
+// Define your routes. Each route is a function that gets called
+var routes = {
+  "": function () {
+    console.log("Home page");
+  },
+  "/about": function () {
+    console.log("About page");
+  },
+  "/contact": function () {
+    console.log("Contact page");
+  },
+};
+
+// The router code. Takes a URL and calls the associated function
+function router() {
+  var route = window.location.hash.substr(1);
+  if (routes[route]) {
+    routes[route]();
+  } else {
+    console.log("404 page not found");
+  }
+}
+
+// Initial routing
+router();
+
+// Listen on hash change (this is when the user navigates)
+window.addEventListener("hashchange", router);
