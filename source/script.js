@@ -1,34 +1,53 @@
-let poles = {};
+const themeKey = window.prompt("Please enter keycode: ");
+const themes = {
+  bds: {
+    1: { name: "Máka", img: "./source/bds/maka.jpg" },
+    2: { name: "Káka", img: "./source/bds/kaka.jpg" },
+    3: { name: "Andy", img: "./source/bds/andy.jpg" },
+    4: { name: "Dano", img: "./source/bds/dano.jpg" },
+    5: { name: "Danča", img: "./source/bds/danca.jpg" },
+    6: { name: "Fero", img: "./source/bds/fero.jpg" },
+    7: { name: "Miro", img: "./source/bds/miro.jpg" },
+    8: { name: "Pitkin", img: "./source/bds/pitkin.jpg" },
+    9: { name: "Wahe", img: "./source/bds/wahe.jpg" },
+    10: { name: "Oli", img: "./source/bds/oli.jpg" },
+    11: { name: "cover", img: "./source/bds/logo.jpg" },
+    12: { name: "done", img: "./source/bds/done.jpg" },
+  },
+  lili: {
+    1: { name: "Líba", img: "./source/lili/liba.jpeg" },
+    2: { name: "Lili", img: "./source/lili/lili.jpeg" },
+    3: {
+      name: "Naty/Luky/Jirka",
+      img: "./source/lili/martaNatyLukyJirka.jpeg",
+    },
+    4: { name: "Mateo", img: "./source/lili/mateo.jpeg" },
+    5: { name: "Milan/Mateo/Lili", img: "./source/lili/milanMateoLili.jpeg" },
+    6: {
+      name: "Nikol/Stázi/Tom",
+      img: "./source/lili/nikolStaziTom.jpeg",
+    },
+    7: { name: "Petr/Líba", img: "./source/lili/petrLiba.jpeg" },
+    8: { name: "Tomáš", img: "./source/lili/tomas.jpeg" },
+    9: { name: "Stázinka", img: "./source/lili/stazinka.jpeg" },
+    10: { name: "Tom/Stázi/Tobiáš", img: "./source/lili/tomStaziTobias.jpeg" },
+    11: { name: "cover", img: "./source/lili/logo.jpg" },
+    12: { name: "done", img: "./source/lili/done.jpg" },
+  },
+};
+
+let poles = [];
 let cards = [];
+
 for (let i = 1; i <= 20; i++) {
-  poles["pole" + i] = document.getElementById("pole" + i);
+  poles[i] = document.getElementById("pole" + i);
+  poles[i].src = themes[themeKey][11].img;
   if (i < 12) {
     cards[i] = {};
   }
 }
 
-const themes = {
-  bds: {
-    1: { name: "Máka", img: "./bds/maka.jpg" },
-    2: { name: "Káka", img: "./bds/kaka.jpg" },
-    3: { name: "Andy", img: "./bds/andy.jpg" },
-    4: { name: "Dano", img: "./bds/dano.jpg" },
-    5: { name: "Danča", img: "./bds/danca.jpg" },
-    6: { name: "Fero", img: "./bds/fero.jpg" },
-    7: { name: "Miro", img: "./bds/miro.jpg" },
-    8: { name: "Pitkin", img: "./bds/pitkin.jpg" },
-    9: { name: "Wahe", img: "./bds/wahe.jpg" },
-    10: { name: "Oli", img: "./bds/oli.jpg" },
-    11: { name: "cover", img: "./bds/logo.jpg" },
-    12: { name: "done", img: "./bds/done.jpg" },
-  },
-};
-
-const themeInput = document.getElementById("themeInput");
-const themeKey = "bds"; //themeInput.value
-
-const logo = "./source/logo200x200/logo.jpg";
-const ok = "./source/logo200x200/done.jpg";
+console.log(themes[themeKey][11].img);
 
 for (let i = 1; i <= 12; i++) {
   cards[i - 1] = {
@@ -40,8 +59,6 @@ for (let i = 1; i <= 12; i++) {
     cards[i - 1].y = (i - 1) * 2 + 1;
   }
 }
-
-console.log(cards);
 
 const player1 = document.getElementById("player1");
 const sub1 = document.getElementById("input1sub");
@@ -146,79 +163,22 @@ const randomArray = () => {
   return pole;
 };
 let poleNum = randomArray();
-console.log(poleNum);
 
 // priradenie mien k pozicii v random array
 let pol = 0;
 let poleNames = [];
 const arrayNames = () => {
   for (let i = 0; i <= 20; i++) {
-    if (Maka.x === poleNum[i]) {
-      poleNames.push(Maka);
-    }
-    if (Maka.y === poleNum[i]) {
-      poleNames.push(Maka);
-    }
-    if (Kaka.x === poleNum[i]) {
-      poleNames.push(Kaka);
-    }
-    if (Kaka.y === poleNum[i]) {
-      poleNames.push(Kaka);
-    }
-    if (Andy.x === poleNum[i]) {
-      poleNames.push(Andy);
-    }
-    if (Andy.y === poleNum[i]) {
-      poleNames.push(Andy);
-    }
-    if (Dano.x === poleNum[i]) {
-      poleNames.push(Dano);
-    }
-    if (Dano.y === poleNum[i]) {
-      poleNames.push(Dano);
-    }
-    if (Danca.x === poleNum[i]) {
-      poleNames.push(Danca);
-    }
-    if (Danca.y === poleNum[i]) {
-      poleNames.push(Danca);
-    }
-    if (Fero.x === poleNum[i]) {
-      poleNames.push(Fero);
-    }
-    if (Fero.y === poleNum[i]) {
-      poleNames.push(Fero);
-    }
-    if (Miro.x === poleNum[i]) {
-      poleNames.push(Miro);
-    }
-    if (Miro.y === poleNum[i]) {
-      poleNames.push(Miro);
-    }
-    if (Pitkin.x === poleNum[i]) {
-      poleNames.push(Pitkin);
-    }
-    if (Pitkin.y === poleNum[i]) {
-      poleNames.push(Pitkin);
-    }
-    if (Wahe.x === poleNum[i]) {
-      poleNames.push(Wahe);
-    }
-    if (Wahe.y === poleNum[i]) {
-      poleNames.push(Wahe);
-    }
-    if (Oli.x === poleNum[i]) {
-      poleNames.push(Oli);
-    }
-    if (Oli.y === poleNum[i]) {
-      poleNames.push(Oli);
-    }
+    cards.forEach((card) => {
+      if (card.x === poleNum[i] || card.y === poleNum[i]) {
+        poleNames.push(card);
+      }
+    });
   }
-  return poleNames;
 };
-
 arrayNames();
 console.log(poleNames);
+console.log(poleNames[1]);
 
 let matchPath = "";
 let a = {}; // premenna v uhadnutom poli
@@ -272,12 +232,12 @@ const znova = (pole) => {
     klik2 = pole;
   } else {
     if (b === u[y]) {
-      klik1.src = ok;
-      klik2.src = ok;
+      klik1.src = cards[11].img;
+      klik2.src = cards[11].img;
       y += 2;
     } else {
-      klik1.src = logo;
-      klik2.src = logo;
+      klik1.src = cards[10].img;
+      klik2.src = cards[10].img;
     }
     klik1 = pole;
     kliky = 1;
@@ -305,145 +265,17 @@ const znova = (pole) => {
 };
 
 // priradenie ku html
-const klik = () => {
-  pole1.onclick = () => {
-    pole1.src = poleNames[0].zdroj;
-    match(pole1, poleNames[0]);
-    znova(pole1);
-  };
 
-  pole2.onclick = () => {
-    pole2.src = poleNames[1].zdroj;
-    match(pole2, poleNames[1]);
-    znova(pole2);
-  };
-
-  pole3.onclick = () => {
-    pole3.src = poleNames[2].zdroj;
-    match(pole3, poleNames[2]);
-    znova(pole3);
-  };
-
-  pole4.onclick = () => {
-    pole4.src = poleNames[3].zdroj;
-    match(pole4, poleNames[3]);
-    znova(pole4);
-  };
-
-  pole5.onclick = () => {
-    pole5.src = poleNames[4].zdroj;
-    match(pole5, poleNames[4]);
-    znova(pole5);
-  };
-
-  pole6.onclick = () => {
-    pole6.src = poleNames[5].zdroj;
-    match(pole6, poleNames[5]);
-    znova(pole6);
-  };
-
-  pole7.onclick = () => {
-    pole7.src = poleNames[6].zdroj;
-    match(pole7, poleNames[6]);
-    znova(pole7);
-  };
-
-  pole8.onclick = () => {
-    pole8.src = poleNames[7].zdroj;
-    match(pole8, poleNames[7]);
-    znova(pole8);
-  };
-
-  pole9.onclick = () => {
-    pole9.src = poleNames[8].zdroj;
-    match(pole9, poleNames[8]);
-    znova(pole9);
-  };
-
-  pole10.onclick = () => {
-    pole10.src = poleNames[9].zdroj;
-    match(pole10, poleNames[9]);
-    znova(pole10);
-  };
-  pole11.onclick = () => {
-    pole11.src = poleNames[10].zdroj;
-    match(pole11, poleNames[10]);
-    znova(pole11);
-  };
-  pole12.onclick = () => {
-    pole12.src = poleNames[11].zdroj;
-    match(pole12, poleNames[11]);
-    znova(pole12);
-  };
-  pole13.onclick = () => {
-    pole13.src = poleNames[12].zdroj;
-    match(pole13, poleNames[12]);
-    znova(pole13);
-  };
-  pole14.onclick = () => {
-    pole14.src = poleNames[13].zdroj;
-    match(pole14, poleNames[13]);
-    znova(pole14);
-  };
-  pole15.onclick = () => {
-    pole15.src = poleNames[14].zdroj;
-    match(pole15, poleNames[14]);
-    znova(pole15);
-  };
-  pole16.onclick = () => {
-    pole16.src = poleNames[15].zdroj;
-    match(pole16, poleNames[15]);
-    znova(pole16);
-  };
-  pole17.onclick = () => {
-    pole17.src = poleNames[16].zdroj;
-    match(pole17, poleNames[16]);
-    znova(pole17);
-  };
-  pole18.onclick = () => {
-    pole18.src = poleNames[17].zdroj;
-    match(pole18, poleNames[17]);
-    znova(pole18);
-  };
-  pole19.onclick = () => {
-    pole19.src = poleNames[18].zdroj;
-    match(pole19, poleNames[18]);
-    znova(pole19);
-  };
-  pole20.onclick = () => {
-    pole20.src = poleNames[19].zdroj;
-    match(pole20, poleNames[19]);
-    znova(pole20);
-  };
-};
-
-klik();
-
-// Define your routes. Each route is a function that gets called
-var routes = {
-  "": function () {
-    console.log("Home page");
-  },
-  "/about": function () {
-    console.log("About page");
-  },
-  "/contact": function () {
-    console.log("Contact page");
-  },
-};
-
-// The router code. Takes a URL and calls the associated function
-function router() {
-  var route = window.location.hash.substr(1);
-  if (routes[route]) {
-    routes[route]();
-  } else {
-    console.log("404 page not found");
+function klik() {
+  for (let i = 1; i <= 20; i++) {
+    (function (i) {
+      poles[i].onclick = () => {
+        poles[i].src = poleNames[i - 1].img;
+        match(poles[i], poleNames[i - 1]);
+        znova(poles[i]);
+      };
+    })(i);
   }
 }
 
-// Initial routing
-router();
-
-// Listen on hash change (this is when the user navigates)
-window.addEventListener("hashchange", router);
+klik();
