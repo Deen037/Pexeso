@@ -36,7 +36,7 @@ const themes = {
     11: { name: "cover", img: "./source/lili/logo.jpg" },
     12: { name: "done", img: "./source/lili/done.jpg" },
   },
-  rebeka: { name: "Rebeka", img: "" },
+  rebeka: { name: "Rebeka", img: "blabla" },
 };
 
 let poles = [];
