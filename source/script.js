@@ -1,5 +1,6 @@
-let themeKey = window.prompt("Please enter keycode: ");
-themeKey = themeKey.toLowerCase();
+// let themeKey = window.prompt("Please enter keycode: ");
+// themeKey = themeKey.toLowerCase();
+let themeKey = "bds";
 
 const themes = {
   bds: {
@@ -39,6 +40,8 @@ const themes = {
   rebeka: { name: "Rebeka", img: "huraa" },
 };
 
+//inital board
+
 let poles = [];
 let cards = [];
 
@@ -61,85 +64,59 @@ for (let i = 1; i <= 12; i++) {
   }
 }
 
-const player1div = document.getElementById("player1");
-const sub1 = document.getElementById("input1sub");
-const p1val = document.getElementById("input1");
-const player2div = document.getElementById("player2");
-const sub2 = document.getElementById("input2sub");
-const p2val = document.getElementById("input2");
-const hide1 = document.getElementById("hide1");
-const hide2 = document.getElementById("hide2");
-const show1 = document.getElementById("p1");
-const show2 = document.getElementById("p2");
+//inputs
 
-let player1 = "";
-const player1name = (x) => {
-  player1div.innerHTML = p1val.value;
-  if (p1val.value) {
-    hide1.style.display = "none";
-    show1.style.display = "inline";
-  }
-  player1 = player1div.innerHTML;
-  return player1;
+const elements = {
+  player1: {
+    div: document.getElementById("player1"),
+    val: document.getElementById("input1"),
+    hide: document.getElementById("form1"),
+    show: document.getElementById("p1"),
+    name: "",
+  },
+  player2: {
+    div: document.getElementById("player2"),
+    val: document.getElementById("input2"),
+    hide: document.getElementById("form2"),
+    show: document.getElementById("p2"),
+    name: "",
+  },
 };
 
-let player2 = "";
-const player2name = (x) => {
-  player2div.innerHTML = p2val.value;
-  if (p2val.value) {
-    hide2.style.display = "none";
-    show2.style.display = "inline";
+const setPlayerName = (player) => {
+  player.div.innerHTML = player.val.value;
+  if (player.val.value) {
+    player.hide.style.display = "none";
+    player.show.style.display = "inline-block";
   }
-  player2 = player2div.innerHTML;
-  return player2;
+  player.name = player.div.innerHTML;
+  return player.name;
 };
 
-klikNum = 0;
-p1val.addEventListener("keypress", function (value) {
-  if (value.key === "Enter") {
-    value.preventDefault();
-    player1name();
-  }
-});
-sub1.addEventListener("click", player1name);
+let player1 = setPlayerName(elements.player1);
+let player2 = setPlayerName(elements.player2);
 
-p2val.addEventListener("keypress", function (value) {
-  if (value.key === "Enter") {
-    value.preventDefault();
-    player2name();
-  }
-});
-sub2.addEventListener("click", player2name);
+const addEventListeners = (player) => {
+  player.val.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      setPlayerName(player);
+    }
+  });
+  // player.sub.addEventListener("click", () => setPlayerName(player));
+};
+
+addEventListeners(elements.player1);
+addEventListeners(elements.player2);
 
 const pridajScore1 = (score) => {
   const score1 = document.getElementById("skore1");
   score1.innerHTML = score;
 };
 
-const pridajMeno1 = (mena) => {
-  const team1 = document.getElementById("team1");
-  team1.innerHTML = mena;
-};
-
 const pridajScore2 = (score) => {
   const score1 = document.getElementById("skore2");
   score1.innerHTML = score;
-};
-
-const pridajMeno2 = (mena) => {
-  const team1 = document.getElementById("team2");
-  team1.innerHTML = mena;
-};
-
-const farby = (x) => {
-  if (x <= 0) {
-    player1div.style.color = "red";
-    player2div.style.color = "white";
-  }
-  if (x === 1) {
-    player2div.style.color = "red";
-    player1div.style.color = "white";
-  }
 };
 
 //random array
@@ -189,6 +166,7 @@ let s2 = 0; // skore
 let poleMien1 = [];
 let poleMien2 = [];
 let striedanie = 0;
+let klikNum = 0;
 
 const match = (pole, meno) => {
   klikNum++;
@@ -205,12 +183,10 @@ const match = (pole, meno) => {
       s1++;
       poleMien1.push(` ${menomatch}`);
       pridajScore1(s1);
-      pridajMeno1(poleMien1);
     } else {
       s2++;
       poleMien2.push(` ${menomatch}`);
       pridajScore2(s2);
-      pridajMeno2(poleMien2);
     }
     striedanie--;
   }
@@ -247,8 +223,6 @@ const znova = (pole) => {
       striedanie = 0;
     }
   }
-
-  farby(striedanie);
 
   if (u[19]) {
     if (s1 > s2) {
