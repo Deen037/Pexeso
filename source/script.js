@@ -72,6 +72,7 @@ const elements = {
     val: document.getElementById("input1"),
     hide: document.getElementById("form1"),
     show: document.getElementById("p1"),
+    sub: document.getElementById("sub1"),
     name: "",
   },
   player2: {
@@ -79,6 +80,7 @@ const elements = {
     val: document.getElementById("input2"),
     hide: document.getElementById("form2"),
     show: document.getElementById("p2"),
+    sub: document.getElementById("sub2"),
     name: "",
   },
 };
@@ -103,20 +105,22 @@ const addEventListeners = (player) => {
       setPlayerName(player);
     }
   });
-  // player.sub.addEventListener("click", () => setPlayerName(player));
+  player.sub.addEventListener("click", () => setPlayerName(player));
 };
 
 addEventListeners(elements.player1);
 addEventListeners(elements.player2);
 
 const pridajScore1 = (score) => {
-  const score1 = document.getElementById("skore1");
+  const score1 = document.getElementById("score1");
   score1.innerHTML = score;
+  console.log(player1);
 };
 
 const pridajScore2 = (score) => {
-  const score1 = document.getElementById("skore2");
+  const score1 = document.getElementById("score2");
   score1.innerHTML = score;
+  console.log(player1);
 };
 
 //random array
@@ -226,11 +230,19 @@ const znova = (pole) => {
 
   if (u[19]) {
     if (s1 > s2) {
-      alert(player1 ? `${player1} wins` : "Player 1 wins");
+      alert(
+        elements.player1.shows
+          ? `${elements.player1.show} wins`
+          : "Player 1 wins"
+      );
     } else if (s1 === s2) {
       alert(`tie`);
     } else {
-      alert(player2 ? `${player2} wins` : "Player 2 wins");
+      alert(
+        elements.player2.show
+          ? `${elements.player2.show} wins`
+          : "Player 2 wins"
+      );
     }
   }
 
