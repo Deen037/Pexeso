@@ -1,7 +1,7 @@
 // let themeKey = window.prompt("Please enter keycode: ");
 // themeKey = themeKey.toLowerCase();
-let themeKey = "bds";
 
+let themeKey = "bds";
 const themes = {
   bds: {
     1: { name: "Máka", img: "./source/bds/maka.jpg" },
@@ -15,7 +15,7 @@ const themes = {
     9: { name: "Wahe", img: "./source/bds/wahe.jpg" },
     10: { name: "Oli", img: "./source/bds/oli.jpg" },
     11: { name: "cover", img: "./source/bds/logo.jpg" },
-    12: { name: "done", img: "./source/bds/done.jpg" },
+    12: { name: "done", img: "./source/bds/blank.png" },
   },
   lili: {
     1: { name: "Líba", img: "./source/lili/liba.jpeg" },
@@ -42,16 +42,18 @@ const themes = {
 
 //inital board
 
-let poles = [];
+let fields = [];
 let cards = [];
 
 for (let i = 1; i <= 20; i++) {
-  poles[i] = document.getElementById("pole" + i);
-  poles[i].src = themes[themeKey][11].img;
+  fields[i] = document.getElementById("field" + i);
+  fields[i].src = themes[themeKey][11].img;
   if (i < 12) {
     cards[i] = {};
   }
 }
+
+console.log(fields);
 
 for (let i = 1; i <= 12; i++) {
   cards[i - 1] = {
@@ -111,20 +113,13 @@ const addEventListeners = (player) => {
 addEventListeners(elements.player1);
 addEventListeners(elements.player2);
 
-const pridajScore1 = (score) => {
-  const score1 = document.getElementById("score1");
-  score1.innerHTML = score;
-  console.log(player1);
-};
-
-const pridajScore2 = (score) => {
-  const score1 = document.getElementById("score2");
-  score1.innerHTML = score;
-  console.log(player1);
+const updateScore = (score, elementId) => {
+  const scoreElement = document.getElementById(elementId);
+  scoreElement.innerHTML = score;
 };
 
 //random array
-const porovnavac = (x, y) => {
+const comparator = (x, y) => {
   for (let i = 0; i <= x.length; i++) {
     if (y === x[i]) {
       return true;
@@ -137,7 +132,7 @@ const randomArray = () => {
   if (pole.length !== 20) {
     for (let i = 1; i <= 1000; i++) {
       let j = Math.floor(Math.random() * 20);
-      if (porovnavac(pole, j) !== true) {
+      if (!comparator(pole, j)) {
         pole.push(j);
       }
     }
@@ -160,44 +155,41 @@ const arrayNames = () => {
 };
 arrayNames();
 
+//game logic
+
+let clickPerPlayer;
+
 let matchPath = "";
 let a = {}; // premenna v uhadnutom poli
 let b = {}; // premenna v uhadnutom poli
 let u = []; // pole uhadnutych kariet
 let y = 0; // pozicia v poli uhadnutych kariet
-let s1 = 0;
-let s2 = 0; // skore
-let poleMien1 = [];
-let poleMien2 = [];
+let score = [0, 0];
 let striedanie = 0;
-let klikNum = 0;
+let clickCounter = 0;
 
-const match = (pole, meno) => {
-  klikNum++;
-  if (klikNum === 1) {
+const match = (pole) => {
+  clickCounter++;
+  if (clickCounter === 1) {
     matchPath = pole.src;
     a = pole;
-  } else if (klikNum === 2 && matchPath === pole.src) {
+  } else if (clickCounter === 2 && matchPath === pole.src) {
     b = pole;
-    let menomatch = meno;
-    //window.alert(`${menomatch.meno} JE TVOJ(a) !!!`);
     u.push(b);
     u.push(b);
     if (striedanie === 0) {
-      s1++;
-      poleMien1.push(` ${menomatch}`);
-      pridajScore1(s1);
+      score[0]++;
+      updateScore(score[0], "score1");
     } else {
-      s2++;
-      poleMien2.push(` ${menomatch}`);
-      pridajScore2(s2);
+      score[1]++;
+      updateScore(score[1], "score2");
     }
     striedanie--;
   }
-  if (klikNum === 2) {
-    klikNum = 0;
+  if (clickCounter === 2) {
+    clickCounter = 0;
   }
-  return klikNum, matchPath, u, b, striedanie, s1, s2;
+  return clickCounter, matchPath, u, b, striedanie, score;
 };
 
 let kliky = 0; //kliky pre 2 tahy
@@ -228,14 +220,16 @@ const znova = (pole) => {
     }
   }
 
+  // winner window
+
   if (u[19]) {
-    if (s1 > s2) {
+    if (score[0] > score[1]) {
       alert(
         elements.player1.shows
           ? `${elements.player1.show} wins`
           : "Player 1 wins"
       );
-    } else if (s1 === s2) {
+    } else if (score[0] === score[1]) {
       alert(`tie`);
     } else {
       alert(
@@ -251,13 +245,24 @@ const znova = (pole) => {
 
 // priradenie ku html
 
+function getRelativePath(url) {
+  const startPos = url.indexOf("/source");
+  return "." + url.slice(startPos);
+}
+
 function klik() {
   for (let i = 1; i <= 20; i++) {
     (function (i) {
-      poles[i].onclick = () => {
-        poles[i].src = poleNames[i - 1].img;
-        match(poles[i], poleNames[i - 1].name);
-        znova(poles[i]);
+      fields[i].onclick = () => {
+        if (
+          getRelativePath(fields[i].src) === poleNames[i - 1].img ||
+          getRelativePath(fields[i].src) === cards[11].img
+        ) {
+        } else {
+          fields[i].src = poleNames[i - 1].img;
+          match(fields[i]);
+          znova(fields[i]);
+        }
       };
     })(i);
   }
