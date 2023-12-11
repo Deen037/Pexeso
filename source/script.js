@@ -193,8 +193,8 @@ const match = (pole) => {
 };
 
 let kliky = 0; //kliky pre 2 tahy
-let klik1; // prvy klik
-let klik2; // druhy klik
+let klik1; // prvy playerClick
+let klik2; // druhy playerClick
 const znova = (pole) => {
   kliky++;
   if (kliky === 1) {
@@ -250,7 +250,7 @@ function getRelativePath(url) {
   return "." + url.slice(startPos);
 }
 
-function klik() {
+function playerClick() {
   for (let i = 1; i <= 20; i++) {
     (function (i) {
       fields[i].onclick = () => {
@@ -268,4 +268,4 @@ function klik() {
   }
 }
 
-klik();
+playerClick();
