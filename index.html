@@ -11,7 +11,6 @@
   <style>
     body {
       min-width: 700px;
-      background-color: #f5f5f5;
       font-family: "Roboto", sans-serif;
       margin: 0;
       padding: 0;
@@ -150,22 +149,115 @@
       gap: 10px;
       margin: 5px;
     }
-    .box1,
-    .box2,
-    .box3,
-    .box4 {
+    #box1,
+    #box2,
+    #box3,
+    #box4 {
       width: 10px;
       height: 10px;
       border: 1px solid black;
     }
 
-    .box1,
-    .box2 {
-      background-color: rgb(255, 182, 193);
+    #box1,
+    #box2 {
+      background-color: gray;
     }
-    .box3,
-    .box4 {
-      background-color: rgb(173, 216, 230);
+    #box3,
+    #box4 {
+      background-color: gray;
+    }
+    .onMove {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #leftArrow,
+    #rightArrow,
+    #youGo {
+      color: rgb(38, 35, 32);
+    }
+
+    p {
+      color: gray;
+      margin: 0;
+      padding: 0;
+    }
+
+    #winner {
+      position: fixed;
+      top: 0px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      backdrop-filter: blur(2px);
+      z-index: 1;
+      background-image: url("source/champ.png");
+      background-repeat: no-repeat;
+      background-size: 40% 100%;
+      background-position: center;
+
+      display: none;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      gap: 25vh;
+    }
+
+    #winner h3 {
+      background: linear-gradient(
+        to right,
+        rgb(236, 189, 101),
+        rgb(255, 255, 255)
+      );
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      font-size: 40px;
+      margin-top: 30px;
+      padding: 0;
+    }
+
+    #winner h1 {
+      font-size: 50px;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(
+        to right,
+        rgb(236, 189, 101),
+        rgb(255, 255, 255),
+        rgb(144, 99, 36),
+        white,
+        rgb(236, 189, 101)
+      );
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: gradient 20s ease infinite;
+    }
+    @keyframes gradient {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: 0 0;
+      }
+    }
+
+    #playAgain {
+      background-color: rgb(144, 99, 36);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 30px;
+      padding: 10px;
+      margin-bottom: 20px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
   <body>
@@ -199,12 +291,17 @@
       </div>
       <div class="headerBottom">
         <div class="leftBoxes">
-          <div class="box1"></div>
-          <div class="box2"></div>
+          <div id="box1"></div>
+          <div id="box2"></div>
+        </div>
+        <div class="onMove">
+          <p id="leftArrow"><-</p>
+          <p id="youGo">you go</p>
+          <p id="rightArrow">-></p>
         </div>
         <div class="rightBoxes">
-          <div class="box3"></div>
-          <div class="box4"></div>
+          <div id="box3"></div>
+          <div id="box4"></div>
         </div>
       </div>
     </header>
@@ -280,6 +377,11 @@
           <img src="" id="field20" />
         </div>
       </div>
+    </div>
+    <div id="winner">
+      <h3>THE CHAMP</h3>
+      <h1 id="winnerName"></h1>
+      <button id="playAgain" onclick="playAgain()">Play again</button>
     </div>
 
     <script type="text/javascript" src="source/script.js"></script>

@@ -1,7 +1,6 @@
-// let themeKey = window.prompt("Please enter keycode: ");
-// themeKey = themeKey.toLowerCase();
+let themeKey = window.prompt("Please enter keycode: ");
+themeKey = themeKey.toLowerCase();
 
-let themeKey = "bds";
 const themes = {
   bds: {
     1: { name: "Máka", img: "./source/bds/maka.jpg" },
@@ -35,7 +34,7 @@ const themes = {
     9: { name: "Stázinka", img: "./source/lili/stazinka.jpeg" },
     10: { name: "Tom/Stázi/Tobiáš", img: "./source/lili/tomStaziTobias.jpeg" },
     11: { name: "cover", img: "./source/lili/logo.jpg" },
-    12: { name: "done", img: "./source/lili/done.jpg" },
+    12: { name: "done", img: "./source/lili/blank.png" },
   },
   rebeka: { name: "Rebeka", img: "huraa" },
 };
@@ -155,93 +154,163 @@ const arrayNames = () => {
 };
 arrayNames();
 
+const displayWinner = () => {
+  document.getElementById("winner").style.display = "flex";
+  let winner;
+  if (score[0] > score[1]) {
+    winner = elements.player1.name;
+  } else if (score[0] < score[1]) {
+    winner = elements.player2.name;
+  } else {
+    winner = "tie";
+  }
+  document.getElementById("winnerName").innerHTML = winner;
+};
+
+function playAgain() {
+  document.getElementById("winner").style.display = "none";
+}
+
 //game logic
 
-let clickPerPlayer;
-
-let matchPath = "";
-let a = {}; // premenna v uhadnutom poli
-let b = {}; // premenna v uhadnutom poli
-let u = []; // pole uhadnutych kariet
-let y = 0; // pozicia v poli uhadnutych kariet
 let score = [0, 0];
-let striedanie = 0;
-let clickCounter = 0;
+let pathToMatch = "";
+let playerOnMove = 0;
+let clickPerPlayer = 0;
+let isMatch = false;
+let matchedCounter = 0;
 
-const match = (pole) => {
-  clickCounter++;
-  if (clickCounter === 1) {
-    matchPath = pole.src;
-    a = pole;
-  } else if (clickCounter === 2 && matchPath === pole.src) {
-    b = pole;
-    u.push(b);
-    u.push(b);
-    if (striedanie === 0) {
-      score[0]++;
-      updateScore(score[0], "score1");
+const match = (field) => {
+  isMatch = false;
+  clickPerPlayer++;
+  if (clickPerPlayer === 1) {
+    pathToMatch = field.src;
+  } else if (clickPerPlayer === 2) {
+    if (pathToMatch === field.src) {
+      matchedCounter++;
+      if (playerOnMove === 0) {
+        score[0]++;
+        updateScore(score[0], "score1");
+      } else {
+        score[1]++;
+        updateScore(score[1], "score2");
+      }
+      isMatch = true;
     } else {
-      score[1]++;
-      updateScore(score[1], "score2");
+      if (playerOnMove === 0) {
+        playerOnMove++;
+      } else {
+        playerOnMove = 0;
+      }
     }
-    striedanie--;
+    clickPerPlayer = 0;
   }
-  if (clickCounter === 2) {
-    clickCounter = 0;
+  if (matchedCounter === 10) {
+    displayWinner();
   }
-  return clickCounter, matchPath, u, b, striedanie, score;
 };
 
 let kliky = 0; //kliky pre 2 tahy
 let klik1; // prvy playerClick
 let klik2; // druhy playerClick
-const znova = (pole) => {
+let boxColourSwitcher = 0;
+
+const znova = (field) => {
   kliky++;
   if (kliky === 1) {
-    klik1 = pole;
+    klik1 = field;
   } else if (kliky === 2) {
-    klik2 = pole;
+    klik2 = field;
   } else {
-    if (b === u[y]) {
+    if (klik1.src === klik2.src) {
       klik1.src = cards[11].img;
       klik2.src = cards[11].img;
-      y += 2;
     } else {
       klik1.src = cards[10].img;
       klik2.src = cards[10].img;
+      if (boxColourSwitcher === 0) {
+        boxColourSwitcher++;
+      } else {
+        boxColourSwitcher = 0;
+      }
     }
-    klik1 = pole;
+    klik1 = field;
     kliky = 1;
-
-    if (striedanie === 0) {
-      striedanie++;
-    } else {
-      striedanie = 0;
-    }
   }
 
   // winner window
 
-  if (u[19]) {
-    if (score[0] > score[1]) {
-      alert(
-        elements.player1.shows
-          ? `${elements.player1.show} wins`
-          : "Player 1 wins"
-      );
-    } else if (score[0] === score[1]) {
-      alert(`tie`);
-    } else {
-      alert(
-        elements.player2.show
-          ? `${elements.player2.show} wins`
-          : "Player 2 wins"
-      );
+  // if () {
+  //   if (score[0] > score[1]) {
+  //     alert(
+  //       elements.player1.shows
+  //         ? `${elements.player1.show} wins`
+  //         : "Player 1 wins"
+  //     );
+  //   } else if (score[0] === score[1]) {
+  //     alert(`tie`);
+  //   } else {
+  //     alert(
+  //       elements.player2.show
+  //         ? `${elements.player2.show} wins`
+  //         : "Player 2 wins"
+  //     );
+  //   }
+  // }
+};
+
+//colors
+let box1 = document.getElementById("box1");
+let box2 = document.getElementById("box2");
+let box3 = document.getElementById("box3");
+let box4 = document.getElementById("box4");
+let leftArrow = document.getElementById("leftArrow");
+let rightArrow = document.getElementById("rightArrow");
+let youGo = document.getElementById("youGo");
+
+function switchNameColor() {
+  youGo.style.color = "gray";
+  if (playerOnMove === 0) {
+    elements.player1.div.style.color = "rgb(255, 182, 193)";
+    elements.player2.div.style.color = "gray";
+    leftArrow.style.color = "white";
+    rightArrow.style.color = "rgb(38, 35, 32)";
+  } else {
+    elements.player1.div.style.color = "gray";
+    elements.player2.div.style.color = "rgb(173, 216, 230)";
+    leftArrow.style.color = "rgb(38, 35, 32)";
+    rightArrow.style.color = "white";
+  }
+}
+function switchBoxColour() {
+  if (boxColourSwitcher === 0) {
+    box3.style.backgroundColor = "gray";
+    box4.style.backgroundColor = "gray";
+    if (clickPerPlayer === 1) {
+      box1.style.backgroundColor = "rgb(255, 182, 193)";
+    }
+    if (clickPerPlayer === 0) {
+      box2.style.backgroundColor = "rgb(255, 182, 193)";
+    }
+    if (isMatch) {
+      box1.style.backgroundColor = "gray";
+      box2.style.backgroundColor = "gray";
+    }
+  } else {
+    box1.style.backgroundColor = "gray";
+    box2.style.backgroundColor = "gray";
+    if (clickPerPlayer === 1) {
+      box3.style.backgroundColor = "rgb(173, 216, 230)";
+    }
+    if (clickPerPlayer === 0) {
+      box4.style.backgroundColor = "rgb(173, 216, 230)";
+    }
+    if (isMatch) {
+      box3.style.backgroundColor = "gray";
+      box4.style.backgroundColor = "gray";
     }
   }
-
-  return kliky, klik1, klik2, striedanie;
-};
+}
 
 // priradenie ku html
 
@@ -262,6 +331,9 @@ function playerClick() {
           fields[i].src = poleNames[i - 1].img;
           match(fields[i]);
           znova(fields[i]);
+          switchNameColor();
+          switchBoxColour();
+          // setInterval(switchColors, 1000);
         }
       };
     })(i);
