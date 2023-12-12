@@ -1,69 +1,37 @@
-let themeKey = window.prompt("Please enter keycode: ");
+let themeKey = window.prompt("Please enter code: ");
 themeKey = themeKey.toLowerCase();
-
-const themes = {
-  bds: {
-    1: { name: "Máka", img: "./source/bds/maka.jpg" },
-    2: { name: "Káka", img: "./source/bds/kaka.jpg" },
-    3: { name: "Andy", img: "./source/bds/andy.jpg" },
-    4: { name: "Dano", img: "./source/bds/dano.jpg" },
-    5: { name: "Danča", img: "./source/bds/danca.jpg" },
-    6: { name: "Fero", img: "./source/bds/fero.jpg" },
-    7: { name: "Miro", img: "./source/bds/miro.jpg" },
-    8: { name: "Pitkin", img: "./source/bds/pitkin.jpg" },
-    9: { name: "Wahe", img: "./source/bds/wahe.jpg" },
-    10: { name: "Oli", img: "./source/bds/oli.jpg" },
-    11: { name: "cover", img: "./source/bds/logo.jpg" },
-    12: { name: "done", img: "./source/bds/blank.png" },
-  },
-  lili: {
-    1: { name: "Líba", img: "./source/lili/liba.jpeg" },
-    2: { name: "Lili", img: "./source/lili/lili.jpeg" },
-    3: {
-      name: "Naty/Luky/Jirka",
-      img: "./source/lili/martaNatyLukyJirka.jpeg",
-    },
-    4: { name: "Mateo", img: "./source/lili/mateo.jpeg" },
-    5: { name: "Milan/Mateo/Lili", img: "./source/lili/milanMateoLili.jpeg" },
-    6: {
-      name: "Nikol/Stázi/Tom",
-      img: "./source/lili/nikolStaziTom.jpeg",
-    },
-    7: { name: "Petr/Líba", img: "./source/lili/petrLiba.jpeg" },
-    8: { name: "Tomáš", img: "./source/lili/tomas.jpeg" },
-    9: { name: "Stázinka", img: "./source/lili/stazinka.jpeg" },
-    10: { name: "Tom/Stázi/Tobiáš", img: "./source/lili/tomStaziTobias.jpeg" },
-    11: { name: "cover", img: "./source/lili/logo.jpg" },
-    12: { name: "done", img: "./source/lili/blank.png" },
-  },
-  rebeka: { name: "Rebeka", img: "huraa" },
-};
 
 //inital board
 
 let fields = [];
 let cards = [];
 
-for (let i = 1; i <= 20; i++) {
-  fields[i] = document.getElementById("field" + i);
-  fields[i].src = themes[themeKey][11].img;
-  if (i < 12) {
-    cards[i] = {};
+function addAtributes() {
+  for (let i = 1; i <= 20; i++) {
+    fields[i] = document.getElementById("field" + i);
+    fields[i].src = themes[themeKey][11].img;
+    if (i < 12) {
+      cards[i] = {};
+    }
   }
 }
 
-console.log(fields);
+addAtributes();
 
-for (let i = 1; i <= 12; i++) {
-  cards[i - 1] = {
-    name: `${themes[themeKey][i].name}`,
-    img: `${themes[themeKey][i].img}`,
-  };
-  if (i < 11) {
-    cards[i - 1].x = (i - 1) * 2;
-    cards[i - 1].y = (i - 1) * 2 + 1;
+function createThemeCards() {
+  for (let i = 1; i <= 12; i++) {
+    cards[i - 1] = {
+      name: `${themes[themeKey][i].name}`,
+      img: `${themes[themeKey][i].img}`,
+    };
+    if (i < 11) {
+      cards[i - 1].x = (i - 1) * 2;
+      cards[i - 1].y = (i - 1) * 2 + 1;
+    }
   }
 }
+
+createThemeCards();
 
 //inputs
 
@@ -154,22 +122,23 @@ const arrayNames = () => {
 };
 arrayNames();
 
+let winsCounter1 = 0;
+let winsCounter2 = 0;
+
 const displayWinner = () => {
   document.getElementById("winner").style.display = "flex";
   let winner;
   if (score[0] > score[1]) {
-    winner = elements.player1.name;
+    winsCounter1++;
+    winner = elements.player1.name ? elements.player1.name : "Player 1";
   } else if (score[0] < score[1]) {
-    winner = elements.player2.name;
+    winsCounter2++;
+    winner = elements.player2.name ? elements.player2.name : "Player 2";
   } else {
     winner = "tie";
   }
   document.getElementById("winnerName").innerHTML = winner;
 };
-
-function playAgain() {
-  document.getElementById("winner").style.display = "none";
-}
 
 //game logic
 
@@ -179,6 +148,21 @@ let playerOnMove = 0;
 let clickPerPlayer = 0;
 let isMatch = false;
 let matchedCounter = 0;
+
+function vanish() {
+  score = [0, 0];
+  updateScore(score[0], "score1");
+  updateScore(score[1], "score2");
+  pathToMatch = "";
+  playerOnMove = 0;
+  clickPerPlayer = 0;
+  isMatch = false;
+  matchedCounter = 0;
+  kliky = 0; //kliky pre 2 tahy
+  klik1; // prvy playerClick
+  klik2; // druhy playerClick
+  boxColourSwitcher = 0;
+}
 
 const match = (field) => {
   isMatch = false;
@@ -237,29 +221,10 @@ const znova = (field) => {
     klik1 = field;
     kliky = 1;
   }
-
-  // winner window
-
-  // if () {
-  //   if (score[0] > score[1]) {
-  //     alert(
-  //       elements.player1.shows
-  //         ? `${elements.player1.show} wins`
-  //         : "Player 1 wins"
-  //     );
-  //   } else if (score[0] === score[1]) {
-  //     alert(`tie`);
-  //   } else {
-  //     alert(
-  //       elements.player2.show
-  //         ? `${elements.player2.show} wins`
-  //         : "Player 2 wins"
-  //     );
-  //   }
-  // }
 };
 
 //colors
+
 let box1 = document.getElementById("box1");
 let box2 = document.getElementById("box2");
 let box3 = document.getElementById("box3");
@@ -282,6 +247,7 @@ function switchNameColor() {
     rightArrow.style.color = "white";
   }
 }
+
 function switchBoxColour() {
   if (boxColourSwitcher === 0) {
     box3.style.backgroundColor = "gray";
@@ -312,7 +278,7 @@ function switchBoxColour() {
   }
 }
 
-// priradenie ku html
+//onClick functionality
 
 function getRelativePath(url) {
   const startPos = url.indexOf("/source");
@@ -333,7 +299,6 @@ function playerClick() {
           znova(fields[i]);
           switchNameColor();
           switchBoxColour();
-          // setInterval(switchColors, 1000);
         }
       };
     })(i);
@@ -341,3 +306,21 @@ function playerClick() {
 }
 
 playerClick();
+
+function playAgain() {
+  document.getElementById("winner").style.display = "none";
+  document.getElementsByClassName("helper")[0].style.display = "none";
+  document.getElementById("p1wins").innerHTML = winsCounter1;
+  document.getElementById("p2wins").innerHTML = winsCounter2;
+  let wins = document.getElementsByClassName("wins");
+  for (let i = 0; i < wins.length; i++) {
+    wins[i].style.display = "flex";
+  }
+  leftArrow.style.color = "white";
+  rightArrow.style.color = "rgb(38, 35, 32)";
+  addAtributes();
+  createThemeCards();
+  poleNum = randomArray();
+  arrayNames();
+  vanish();
+}

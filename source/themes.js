@@ -1,0 +1,37 @@
+const themes = {
+  bds: {
+    1: { name: "Máka", img: "./source/bds/maka.jpg" },
+    2: { name: "Káka", img: "./source/bds/kaka.jpg" },
+    3: { name: "Andy", img: "./source/bds/andy.jpg" },
+    4: { name: "Dano", img: "./source/bds/dano.jpg" },
+    5: { name: "Danča", img: "./source/bds/danca.jpg" },
+    6: { name: "Fero", img: "./source/bds/fero.jpg" },
+    7: { name: "Miro", img: "./source/bds/miro.jpg" },
+    8: { name: "Pitkin", img: "./source/bds/pitkin.jpg" },
+    9: { name: "Wahe", img: "./source/bds/wahe.jpg" },
+    10: { name: "Oli", img: "./source/bds/oli.jpg" },
+    11: { name: "cover", img: "./source/bds/logo.jpg" },
+    12: { name: "done", img: "./source/bds/blank.png" },
+  },
+  lili: {
+    1: { name: "Líba", img: "./source/lili/liba.jpeg" },
+    2: { name: "Lili", img: "./source/lili/lili.jpeg" },
+    3: {
+      name: "Naty/Luky/Jirka",
+      img: "./source/lili/martaNatyLukyJirka.jpeg",
+    },
+    4: { name: "Mateo", img: "./source/lili/mateo.jpeg" },
+    5: { name: "Milan/Mateo/Lili", img: "./source/lili/milanMateoLili.jpeg" },
+    6: {
+      name: "Nikol/Stázi/Tom",
+      img: "./source/lili/nikolStaziTom.jpeg",
+    },
+    7: { name: "Petr/Líba", img: "./source/lili/petrLiba.jpeg" },
+    8: { name: "Tomáš", img: "./source/lili/tomas.jpeg" },
+    9: { name: "Stázinka", img: "./source/lili/stazinka.jpeg" },
+    10: { name: "Tom/Stázi/Tobiáš", img: "./source/lili/tomStaziTobias.jpeg" },
+    11: { name: "cover", img: "./source/lili/logo.jpg" },
+    12: { name: "done", img: "./source/lili/blank.png" },
+  },
+  rebeka: { name: "Rebeka", img: "huraa" },
+};
