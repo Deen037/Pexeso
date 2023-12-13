@@ -245,17 +245,23 @@ let box4 = document.getElementById("box4");
 let leftArrow = document.getElementById("leftArrow");
 let rightArrow = document.getElementById("rightArrow");
 let youGo = document.getElementById("youGo");
+let input1 = document.getElementById("input1");
+let input2 = document.getElementById("input2");
 
 function switchNameColor() {
-  youGo.style.color = "gray";
+  youGo.style.color = "rgb(192, 192, 192)";
   if (playerOnMove === 0) {
     elements.player1.div.style.color = "rgb(255, 182, 193)";
-    elements.player2.div.style.color = "gray";
+    elements.player1.div.style.fontSize = "25px";
+    elements.player2.div.style.color = "rgb(192, 192, 192)";
+    elements.player2.div.style.fontSize = "20px";
     leftArrow.style.color = "white";
     rightArrow.style.color = "rgb(38, 35, 32)";
   } else {
-    elements.player1.div.style.color = "gray";
+    elements.player1.div.style.color = "rgb(192, 192, 192)";
+    elements.player1.div.style.fontSize = "20px";
     elements.player2.div.style.color = "rgb(173, 216, 230)";
+    elements.player2.div.style.fontSize = "25px";
     leftArrow.style.color = "rgb(38, 35, 32)";
     rightArrow.style.color = "white";
   }
@@ -263,8 +269,8 @@ function switchNameColor() {
 
 function switchBoxColour() {
   if (boxColourSwitcher === 0) {
-    box3.style.backgroundColor = "gray";
-    box4.style.backgroundColor = "gray";
+    box3.style.backgroundColor = "rgb(64, 64, 64)";
+    box4.style.backgroundColor = "rgb(64, 64, 64)";
     if (clickPerPlayer === 1) {
       box1.style.backgroundColor = "rgb(255, 182, 193)";
     }
@@ -272,12 +278,12 @@ function switchBoxColour() {
       box2.style.backgroundColor = "rgb(255, 182, 193)";
     }
     if (isMatch) {
-      box1.style.backgroundColor = "gray";
-      box2.style.backgroundColor = "gray";
+      box1.style.backgroundColor = "rgb(64, 64, 64)";
+      box2.style.backgroundColor = "rgb(64, 64, 64)";
     }
   } else {
-    box1.style.backgroundColor = "gray";
-    box2.style.backgroundColor = "gray";
+    box1.style.backgroundColor = "rgb(64, 64, 64)";
+    box2.style.backgroundColor = "rgb(64, 64, 64)";
     if (clickPerPlayer === 1) {
       box3.style.backgroundColor = "rgb(173, 216, 230)";
     }
@@ -285,8 +291,8 @@ function switchBoxColour() {
       box4.style.backgroundColor = "rgb(173, 216, 230)";
     }
     if (isMatch) {
-      box3.style.backgroundColor = "gray";
-      box4.style.backgroundColor = "gray";
+      box3.style.backgroundColor = "rgb(64, 64, 64)";
+      box4.style.backgroundColor = "rgb(64, 64, 64)";
     }
   }
 }
