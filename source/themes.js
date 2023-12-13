@@ -12,6 +12,7 @@ const themes = {
     10: { name: "Oli", img: "./source/bds/oli.jpg" },
     11: { name: "cover", img: "./source/bds/logo.jpg" },
     12: { name: "done", img: "./source/bds/blank.png" },
+    language: "english",
   },
   lili: {
     1: { name: "Líba", img: "./source/lili/liba.jpeg" },
@@ -32,6 +33,7 @@ const themes = {
     10: { name: "Tom/Stázi/Tobiáš", img: "./source/lili/tomStaziTobias.jpeg" },
     11: { name: "cover", img: "./source/lili/logo.jpg" },
     12: { name: "done", img: "./source/lili/blank.png" },
+    language: "czech",
   },
   rebeka: { name: "Rebeka", img: "huraa" },
 };

@@ -1,5 +1,18 @@
-let themeKey = window.prompt("Please enter code: ");
+let themeKey = window.prompt("Please enter code / Prosím zadejte kód : ");
 themeKey = themeKey.toLowerCase();
+
+//setLanguage
+let language = themes[themeKey].language;
+let lang = languages[language];
+document.getElementById("input1").placeholder = lang.player1;
+document.getElementById("input2").placeholder = lang.player2;
+document.getElementById("sub1").value = lang.submit;
+document.getElementById("sub2").value = lang.submit;
+document.getElementsByClassName("winsLabel")[0].innerHTML = lang.wins;
+document.getElementsByClassName("winsLabel")[1].innerHTML = lang.wins;
+document.getElementById("youGo").innerHTML = lang.youGo;
+document.getElementById("theChamp").innerHTML = lang.theChamp;
+document.getElementById("playAgain").innerHTML = lang.playAgain;
 
 //inital board
 

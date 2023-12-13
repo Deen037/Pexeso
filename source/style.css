@@ -241,6 +241,7 @@ p {
   background-clip: text;
   animation: gradient 20s ease infinite;
 }
+
 @keyframes gradient {
   0% {
     background-position: 100% 0;
