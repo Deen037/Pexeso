@@ -8,6 +8,7 @@ const languages = {
     youGo: "you go",
     theChamp: "THE CHAMP",
     playAgain: "Play Again",
+    tie: "tie",
   },
   czech: {
     prompt: "Prosím zadejte kód.",
@@ -18,5 +19,6 @@ const languages = {
     youGo: "na tahu",
     theChamp: "MISTR",
     playAgain: "Hrát znovu",
+    tie: "remíza",
   },
 };

@@ -143,12 +143,12 @@ const displayWinner = () => {
   let winner;
   if (score[0] > score[1]) {
     winsCounter1++;
-    winner = elements.player1.name ? elements.player1.name : "Player 1";
+    winner = elements.player1.name ? elements.player1.name : lang.player1;
   } else if (score[0] < score[1]) {
     winsCounter2++;
-    winner = elements.player2.name ? elements.player2.name : "Player 2";
+    winner = elements.player2.name ? elements.player2.name : lang.player2;
   } else {
-    winner = "tie";
+    winner = lang.tie;
   }
   document.getElementById("winnerName").innerHTML = winner;
 };
