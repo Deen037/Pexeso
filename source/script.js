@@ -171,9 +171,9 @@ function vanish() {
   clickPerPlayer = 0;
   isMatch = false;
   matchedCounter = 0;
-  kliky = 0; //kliky pre 2 tahy
-  klik1; // prvy playerClick
-  klik2; // druhy playerClick
+  clicks = 0; //clicks pre 2 tahy
+  click1; // prvy playerClick
+  click2; // druhy playerClick
   boxColourSwitcher = 0;
 }
 
@@ -207,32 +207,32 @@ const match = (field) => {
   }
 };
 
-let kliky = 0; //kliky pre 2 tahy
-let klik1; // prvy playerClick
-let klik2; // druhy playerClick
+let clicks = 0;
+let click1;
+let click2;
 let boxColourSwitcher = 0;
 
 const znova = (field) => {
-  kliky++;
-  if (kliky === 1) {
-    klik1 = field;
-  } else if (kliky === 2) {
-    klik2 = field;
+  clicks++;
+  if (clicks === 1) {
+    click1 = field;
+  } else if (clicks === 2) {
+    click2 = field;
   } else {
-    if (klik1.src === klik2.src) {
-      klik1.src = cards[11].img;
-      klik2.src = cards[11].img;
+    if (click1.src === click2.src) {
+      click1.src = cards[11].img;
+      click2.src = cards[11].img;
     } else {
-      klik1.src = cards[10].img;
-      klik2.src = cards[10].img;
+      click1.src = cards[10].img;
+      click2.src = cards[10].img;
       if (boxColourSwitcher === 0) {
         boxColourSwitcher++;
       } else {
         boxColourSwitcher = 0;
       }
     }
-    klik1 = field;
-    kliky = 1;
+    click1 = field;
+    clicks = 1;
   }
 };
 
@@ -321,6 +321,9 @@ function playerClick() {
 playerClick();
 
 function playAgain() {
+  poleNum = randomArray();
+  poleNames = [];
+  arrayNames();
   document.getElementById("winner").style.display = "none";
   document.getElementsByClassName("helper")[0].style.display = "none";
   document.getElementById("p1wins").innerHTML = winsCounter1;
@@ -333,7 +336,6 @@ function playAgain() {
   rightArrow.style.color = "rgb(38, 35, 32)";
   addAtributes();
   createThemeCards();
-  poleNum = randomArray();
-  arrayNames();
   vanish();
+  console.log(poleNum);
 }
