@@ -224,6 +224,8 @@ function switchNameColor() {
     elements.player1.div.style.fontSize = "25px";
     elements.player2.div.style.color = "rgb(192, 192, 192)";
     elements.player2.div.style.fontSize = "20px";
+    elements.player1.show.style.borderBottom = "1px solid rgb(255, 182, 193)";
+    elements.player2.show.style.borderBottom = "1px solid rgb(192, 192, 192)";
     leftArrow.style.color = "white";
     rightArrow.style.color = "rgb(38, 35, 32)";
   } else {
@@ -231,6 +233,8 @@ function switchNameColor() {
     elements.player1.div.style.fontSize = "20px";
     elements.player2.div.style.color = "rgb(173, 216, 230)";
     elements.player2.div.style.fontSize = "25px";
+    elements.player2.show.style.borderBottom = "1px solid rgb(173, 216, 230)";
+    elements.player1.show.style.borderBottom = "1px solid rgb(192, 192, 192)";
     leftArrow.style.color = "rgb(38, 35, 32)";
     rightArrow.style.color = "white";
   }
@@ -295,6 +299,8 @@ function playerClick() {
 
 playerClick();
 
+//display winner
+
 function triggerConfetti() {
   confetti({
     particleCount: 100,
@@ -302,21 +308,6 @@ function triggerConfetti() {
     origin: { y: 0.5 },
     tricks: 700,
   });
-}
-
-function vanish() {
-  score = [0, 0];
-  updateScore(score[0], "score1");
-  updateScore(score[1], "score2");
-  pathToMatch = "";
-  playerOnMove = 0;
-  clickPerPlayer = 0;
-  isMatch = false;
-  matchedCounter = 0;
-  clicks = 0; //clicks pre 2 tahy
-  click1; // prvy playerClick
-  click2; // druhy playerClick
-  boxColourSwitcher = 0;
 }
 
 const displayWinner = () => {
@@ -338,6 +329,21 @@ const displayWinner = () => {
   }
   document.getElementById("winnerName").innerHTML = winner;
 };
+
+//play again
+
+function vanish() {
+  score = [0, 0];
+  updateScore(score[0], "score1");
+  updateScore(score[1], "score2");
+  pathToMatch = "";
+  playerOnMove = 0;
+  clickPerPlayer = 0;
+  isMatch = false;
+  matchedCounter = 0;
+  clicks = 0;
+  boxColourSwitcher = 0;
+}
 
 function playAgain() {
   poleNum = randomArray();
