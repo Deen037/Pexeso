@@ -135,24 +135,6 @@ const arrayNames = () => {
 };
 arrayNames();
 
-let winsCounter1 = 0;
-let winsCounter2 = 0;
-
-const displayWinner = () => {
-  document.getElementById("winner").style.display = "flex";
-  let winner;
-  if (score[0] > score[1]) {
-    winsCounter1++;
-    winner = elements.player1.name ? elements.player1.name : lang.player1;
-  } else if (score[0] < score[1]) {
-    winsCounter2++;
-    winner = elements.player2.name ? elements.player2.name : lang.player2;
-  } else {
-    winner = lang.tie;
-  }
-  document.getElementById("winnerName").innerHTML = winner;
-};
-
 //game logic
 
 let score = [0, 0];
@@ -161,21 +143,8 @@ let playerOnMove = 0;
 let clickPerPlayer = 0;
 let isMatch = false;
 let matchedCounter = 0;
-
-function vanish() {
-  score = [0, 0];
-  updateScore(score[0], "score1");
-  updateScore(score[1], "score2");
-  pathToMatch = "";
-  playerOnMove = 0;
-  clickPerPlayer = 0;
-  isMatch = false;
-  matchedCounter = 0;
-  clicks = 0; //clicks pre 2 tahy
-  click1; // prvy playerClick
-  click2; // druhy playerClick
-  boxColourSwitcher = 0;
-}
+let winsCounter1 = 0;
+let winsCounter2 = 0;
 
 const match = (field) => {
   isMatch = false;
@@ -325,6 +294,50 @@ function playerClick() {
 }
 
 playerClick();
+
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 100,
+    origin: { y: 0.5 },
+    tricks: 700,
+  });
+}
+
+function vanish() {
+  score = [0, 0];
+  updateScore(score[0], "score1");
+  updateScore(score[1], "score2");
+  pathToMatch = "";
+  playerOnMove = 0;
+  clickPerPlayer = 0;
+  isMatch = false;
+  matchedCounter = 0;
+  clicks = 0; //clicks pre 2 tahy
+  click1; // prvy playerClick
+  click2; // druhy playerClick
+  boxColourSwitcher = 0;
+}
+
+const displayWinner = () => {
+  document.getElementById("winner").style.display = "flex";
+  for (let i = 1; i <= 20; i++) {
+    fields[i].src = poleNames[i - 1].img;
+  }
+  let winner;
+  if (score[0] > score[1]) {
+    triggerConfetti();
+    winsCounter1++;
+    winner = elements.player1.name ? elements.player1.name : lang.player1;
+  } else if (score[0] < score[1]) {
+    triggerConfetti();
+    winsCounter2++;
+    winner = elements.player2.name ? elements.player2.name : lang.player2;
+  } else {
+    winner = lang.tie;
+  }
+  document.getElementById("winnerName").innerHTML = winner;
+};
 
 function playAgain() {
   poleNum = randomArray();
