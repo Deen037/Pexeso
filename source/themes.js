@@ -56,4 +56,25 @@ const themes = {
     12: { name: "done", img: "./source/gfa/blank.png" },
     language: "english",
   },
+  rebenka: {
+    1: { name: "babka", img: "./source/rebenka/babka.jpg" },
+    2: { name: "dano", img: "./source/rebenka/dano.jpg" },
+    3: {
+      name: "dedko",
+      img: "./source/rebenka/dedko.jpg",
+    },
+    4: { name: "deko", img: "./source/rebenka/deko.jpg" },
+    5: { name: "dusan", img: "./source/rebenka/dusan.jpg" },
+    6: {
+      name: "janko",
+      img: "./source/rebenka/janko.jpg",
+    },
+    7: { name: "manka", img: "./source/rebenka/manka.jpg" },
+    8: { name: "rebeka", img: "./source/rebenka/rebeka.jpg" },
+    9: { name: "tatik", img: "./source/rebenka/tatik.jpg" },
+    10: { name: "baki", img: "./source/rebenka/baki.jpg" },
+    11: { name: "cover", img: "./source/rebenka/cover.jpg" },
+    12: { name: "done", img: "./source/rebenka/blank.png" },
+    language: "english",
+  },
 };

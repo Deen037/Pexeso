@@ -14,6 +14,9 @@ const routes = {
   "/gfa": function () {
     themeKey = "gfa";
   },
+  "/rebenka": function () {
+    themeKey = "rebenka";
+  },
 };
 
 function router() {
