@@ -1,4 +1,4 @@
-let themeKey = "gfa";
+let themeKey;
 
 const routes = {
   "/": function () {
