@@ -77,4 +77,5 @@ const themes = {
     12: { name: "done", img: "./source/rebenka/blank.png" },
     language: "english",
   },
+  hallo: {},
 };
