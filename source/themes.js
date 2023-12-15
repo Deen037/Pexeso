@@ -35,5 +35,25 @@ const themes = {
     12: { name: "done", img: "./source/lili/blank.png" },
     language: "czech",
   },
-  rebeka: { name: "Rebeka", img: "huraa" },
+  gfa: {
+    1: { name: "Aleš", img: "./source/gfa/ales.png" },
+    2: { name: "Dávid", img: "./source/gfa/david.png" },
+    3: {
+      name: "Ivana",
+      img: "./source/gfa/ivana.png",
+    },
+    4: { name: "Lukáš J.", img: "./source/gfa/lukasj.png" },
+    5: { name: "Lukáš K.", img: "./source/gfa/lukask.png" },
+    6: {
+      name: "Matěj",
+      img: "./source/gfa/matej.png",
+    },
+    7: { name: "mentor1", img: "./source/gfa/mentor1.png" },
+    8: { name: "mentor2", img: "./source/gfa/mentor2.png" },
+    9: { name: "Pavla", img: "./source/gfa/pavla.png" },
+    10: { name: "psy", img: "./source/gfa/psy.png" },
+    11: { name: "cover", img: "./source/gfa/logo.png" },
+    12: { name: "done", img: "./source/gfa/blank.png" },
+    language: "english",
+  },
 };

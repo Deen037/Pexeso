@@ -1,4 +1,4 @@
-let themeKey;
+let themeKey = "gfa";
 
 const routes = {
   "/": function () {
@@ -10,6 +10,9 @@ const routes = {
   },
   "/lili": function () {
     themeKey = "lili";
+  },
+  "/gfa": function () {
+    themeKey = "gfa";
   },
 };
 

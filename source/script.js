@@ -1,4 +1,5 @@
 //setLanguage
+
 let language = themes[themeKey].language;
 let lang = languages[language];
 document.getElementById("input1").placeholder = lang.player1;
