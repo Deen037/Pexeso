@@ -1,6 +1,3 @@
-let themeKey = window.prompt("Please enter code / Prosím zadejte kód : ");
-themeKey = themeKey.toLowerCase();
-
 //setLanguage
 let language = themes[themeKey].language;
 let lang = languages[language];
