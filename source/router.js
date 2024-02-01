@@ -2,8 +2,9 @@ let themeKey;
 
 const routes = {
   "/": function () {
-    themeKey = window.prompt("Please enter code / Prosím zadejte kód : ");
-    themeKey = themeKey.toLowerCase();
+    // themeKey = window.prompt("Please enter code / Prosím zadejte kód : ");
+    // themeKey = themeKey.toLowerCase();
+    themeKey = "nature";
   },
   "/bds": function () {
     themeKey = "bds";
