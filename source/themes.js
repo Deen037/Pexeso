@@ -77,5 +77,5 @@ const themes = {
     12: { name: "done", img: "./source/nature/blank.png" },
     language: "english",
   },
-  future: {},
+  future: { staus: "will be continued .." },
 };
