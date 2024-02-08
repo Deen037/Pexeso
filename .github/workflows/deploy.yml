@@ -19,5 +19,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             git config --global url."https://${{ secrets.MY_GITHUB_TOKEN }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-             cd Pexeso
-            git clone https://github.com/Deen037/Pexeso.git
+            cd /var/www/Pexeso
+            git pull
