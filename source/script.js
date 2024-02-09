@@ -360,5 +360,4 @@ function playAgain() {
   addAtributes();
   createThemeCards();
   vanish();
-  console.log(poleNum);
 }
