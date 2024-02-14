@@ -12,6 +12,17 @@ document.getElementById("youGo").innerHTML = lang.youGo;
 document.getElementById("theChamp").innerHTML = lang.theChamp;
 document.getElementById("playAgain").innerHTML = lang.playAgain;
 
+//hamburgerMenu
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".menu");
+
+  menuToggle.addEventListener("click", function () {
+    menu.classList.toggle("active");
+  });
+});
+
 //inital board
 
 let fields = [];
