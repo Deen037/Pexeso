@@ -2,7 +2,7 @@ let themeKey;
 
 const routes = {
   "/": function () {
-    themeKey = localStorage.getItem("theme") || "zodiac";
+    themeKey = localStorage.getItem("theme") || "animals";
   },
   "/bds": function () {
     themeKey = "bds";
