@@ -1,12 +1,18 @@
 let nature = document.getElementById("nature");
 let zodiac = document.getElementById("zodiac");
+let animals = document.getElementById("animals");
+
+function navbarToogle(theme) {
+  localStorage.setItem("theme", theme);
+  location.reload();
+}
 
 nature.addEventListener("click", function () {
-  localStorage.setItem("theme", "nature");
-  location.reload();
+  navbarToogle("nature");
 });
-
 zodiac.addEventListener("click", function () {
-  localStorage.setItem("theme", "zodiac");
-  location.reload();
+  navbarToogle("zodiac");
+});
+animals.addEventListener("click", function () {
+  navbarToogle("animals");
 });
