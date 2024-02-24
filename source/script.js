@@ -368,6 +368,5 @@ function enhanceNavbar() {
 
   document.getElementById(theme).style.color = "white";
   document.getElementById(mode).style.color = "white";
-  console.log(theme, mode);
 }
 enhanceNavbar();

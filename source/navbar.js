@@ -1,5 +1,5 @@
 let nature = document.getElementById("nature");
-let zodiac = document.getElementById("zodiac");
+let legends = document.getElementById("legends");
 let animals = document.getElementById("animals");
 let solo = document.getElementById("solo");
 let tournament = document.getElementById("tournament");
@@ -18,8 +18,8 @@ function modeToogle(mode) {
 nature.addEventListener("click", function () {
   themeToogle("nature");
 });
-zodiac.addEventListener("click", function () {
-  themeToogle("zodiac");
+legends.addEventListener("click", function () {
+  themeToogle("legends");
 });
 animals.addEventListener("click", function () {
   themeToogle("animals");
