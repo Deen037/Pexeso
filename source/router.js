@@ -6,15 +6,19 @@ const routes = {
   },
   "/bds": function () {
     themeKey = "bds";
+    document.getElementById("nav").style.display = "none";
   },
   "/lili": function () {
     themeKey = "lili";
+    document.getElementById("nav").style.display = "none";
   },
   "/gfa": function () {
     themeKey = "gfa";
+    document.getElementById("nav").style.display = "none";
   },
   "/rebenka": function () {
     themeKey = "rebenka";
+    document.getElementById("nav").style.display = "none";
   },
 };
 
