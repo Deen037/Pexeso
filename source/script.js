@@ -12,17 +12,6 @@ document.getElementById("youGo").innerHTML = lang.youGo;
 document.getElementById("theChamp").innerHTML = lang.theChamp;
 document.getElementById("playAgain").innerHTML = lang.playAgain;
 
-//hamburgerMenu
-
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".menu");
-
-  menuToggle.addEventListener("click", function () {
-    menu.classList.toggle("active");
-  });
-});
-
 //inital board
 
 let fields = [];
@@ -372,3 +361,13 @@ function playAgain() {
   createThemeCards();
   vanish();
 }
+
+function enhanceNavbar() {
+  let theme = localStorage.getItem("theme");
+  let mode = localStorage.getItem("mode");
+
+  document.getElementById(theme).style.color = "white";
+  document.getElementById(mode).style.color = "white";
+  console.log(theme, mode);
+}
+enhanceNavbar();

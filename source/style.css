@@ -17,6 +17,32 @@ nav {
   align-items: center;
 }
 
+.themes,
+.modes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.themes p {
+  color: rgb(255, 182, 193);
+}
+
+.themes p:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.modes p {
+  color: rgb(173, 216, 230);
+}
+
+#solo,
+#tournament {
+  color: rgb(64, 64, 64);
+}
+
 header {
   background-color: rgb(24, 23, 21);
   padding-top: 10px;
@@ -278,36 +304,6 @@ p {
   transform: translateX(-50%);
 }
 
-.menu {
-  display: none;
-}
-
-.menu.active {
+/* #themes:hover #themesMenu {
   display: block;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu li {
-  padding: 10px 0;
-}
-
-.menu li a {
-  text-decoration: none;
-  color: #333;
-}
-
-.menu-toggle {
-  display: block;
-  cursor: pointer;
-}
-
-.hamburger {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 5px 0;
-}
+} */
