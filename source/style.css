@@ -6,7 +6,7 @@ body {
   background-color: rgb(38, 35, 32);
 }
 
-/* header */
+/* header versus */
 
 header {
   background-color: rgb(24, 23, 21);
@@ -26,9 +26,7 @@ header {
   gap: 45px;
 }
 
-.players,
-#hide1,
-#hide2 {
+.players {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,8 +45,9 @@ header {
 }
 
 #sub1,
-#sub2 {
-  background-color: rgb(25, 25, 25);
+#sub2,
+#subSolo {
+  background-color: black;
   border: none;
   border-radius: 5px;
 }
@@ -160,6 +159,45 @@ p {
   padding: 0;
 }
 
+/* header solo */
+
+#headerSolo {
+  display: none;
+}
+
+#formSolo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#inputSolo {
+  display: flex;
+  width: 300px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+#subSolo {
+  color: rgb(173, 216, 230);
+}
+
+#pS {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* navbar */
 
 nav {
@@ -194,7 +232,6 @@ nav {
   color: rgb(173, 216, 230);
 }
 
-#solo,
 #tournament {
   color: rgb(64, 64, 64);
 }

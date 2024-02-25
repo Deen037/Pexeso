@@ -63,6 +63,14 @@ const elements = {
     sub: document.getElementById("sub2"),
     name: "",
   },
+  playerSolo: {
+    div: document.getElementById("playerSolo"),
+    val: document.getElementById("inputSolo"),
+    hide: document.getElementById("formSolo"),
+    show: document.getElementById("pS"),
+    sub: document.getElementById("subSolo"),
+    name: "",
+  },
 };
 
 const setPlayerName = (player) => {
@@ -75,8 +83,9 @@ const setPlayerName = (player) => {
   return player.name;
 };
 
-let player1 = setPlayerName(elements.player1);
-let player2 = setPlayerName(elements.player2);
+// let player1 = setPlayerName(elements.player1);
+// let player2 = setPlayerName(elements.player2);
+// let playerSolo = setPlayerName(elements.playerSolo);
 
 const addEventListeners = (player) => {
   player.val.addEventListener("keypress", function (event) {
@@ -90,6 +99,7 @@ const addEventListeners = (player) => {
 
 addEventListeners(elements.player1);
 addEventListeners(elements.player2);
+addEventListeners(elements.playerSolo);
 
 const updateScore = (score, elementId) => {
   const scoreElement = document.getElementById(elementId);
@@ -362,14 +372,32 @@ function playAgain() {
   vanish();
 }
 
-function enhanceNavbar() {
-  let theme = localStorage.getItem("theme");
-  let mode = localStorage.getItem("mode");
+// navbar
 
+let theme = localStorage.getItem("theme");
+let mode = localStorage.getItem("mode");
+
+function enhanceNavbar() {
   document.getElementById(theme).style.color = "white";
   document.getElementById(mode).style.color = "white";
 }
 enhanceNavbar();
+
+let headerVersus = document.getElementById("headerVersus");
+let headerSolo = document.getElementById("headerSolo");
+
+console.log(mode);
+
+switch (mode) {
+  case "solo":
+    headerVersus.style.display = "none";
+    headerSolo.style.display = "block";
+    break;
+  case "versus":
+    headerVersus.style.display = "block";
+    headerSolo.style.display = "none";
+    break;
+}
 
 // Stopwatch
 

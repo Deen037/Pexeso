@@ -25,9 +25,9 @@ animals.addEventListener("click", function () {
   themeToogle("animals");
 });
 
-// solo.addEventListener("click", function () {
-//   modeToogle("solo");
-// });
+solo.addEventListener("click", function () {
+  modeToogle("solo");
+});
 // tournament.addEventListener("click", function () {
 //   modeToogle("tournament");
 // });

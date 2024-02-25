@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <div id="versusHeader">
+      <div id="headerVersus">
         <div class="headerTop">
           <div class="players">
             <div id="form1">
@@ -69,10 +69,23 @@
           </div>
         </div>
       </div>
-      <div id="stopwatch">
-        <h3 id="time">00:00:0</h3>
-        <button onclick="start()">Ready</button>
-        <button onclick="stop()">Stop</button>
+      <div id="headerSolo">
+        <div id="formSolo">
+          <form>
+            <input type="text" id="inputSolo" placeholder="Player 1" />
+            <input type="button" value="submit" id="subSolo" />
+          </form>
+        </div>
+        <div class="players">
+          <div id="pS">
+            <h3 id="playerSolo"></h3>
+          </div>
+        </div>
+        <div id="watches">
+          <h3 id="time">00:00:0</h3>
+        </div>
+        <!-- <button onclick="start()">Ready</button>
+        <button onclick="stop()">Stop</button> -->
       </div>
     </header>
     <nav id="nav">
