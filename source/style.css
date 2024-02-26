@@ -200,6 +200,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(210, 210, 210);
 }
 
 /* navbar */
@@ -223,16 +224,18 @@ nav {
   gap: 20px;
 }
 
-.themes p {
-  color: rgb(255, 182, 193);
+.themes p,
+.modes p {
+  color: rgb(210, 210, 210);
 }
 
 .themes p:hover {
-  color: white;
   cursor: pointer;
+  color: rgb(255, 182, 193);
 }
 
-.modes p {
+.modes p:hover {
+  cursor: pointer;
   color: rgb(173, 216, 230);
 }
 

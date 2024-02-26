@@ -359,7 +359,7 @@ const displayResult = () => {
   let name;
   name = elements.playerSolo.name ? elements.playerSolo.name : lang.playerSolo;
   document.getElementById("name").innerHTML = name;
-  document.getElementById("finalTime").innerHTML = finalTime;
+  document.getElementById("finalTime").innerHTML = stopwatch.textContent;
   document.getElementById("finalClicks").innerHTML = clickCounter;
 };
 
@@ -406,14 +406,14 @@ let mode = localStorage.getItem("mode");
 
 function enhanceNavbar() {
   if (theme) {
-    document.getElementById(theme).style.color = "white";
+    document.getElementById(theme).style.color = "rgb(255, 182, 193)";
   } else {
-    document.getElementById("animals").style.color = "white";
+    document.getElementById("animals").style.color = "rgb(255, 182, 193)";
   }
   if (mode) {
-    document.getElementById(mode).style.color = "white";
+    document.getElementById(mode).style.color = "rgb(173, 216, 230)";
   } else {
-    document.getElementById("versus").style.color = "white";
+    document.getElementById("versus").style.color = "rgb(173, 216, 230)";
   }
 }
 enhanceNavbar();
@@ -459,13 +459,9 @@ function pad(num) {
   return num.toString().padStart(2, "0");
 }
 
-let finalTime;
-
 function stopwatchStart() {
   timer = setInterval(() => {
     runTime();
-    finalTime = pad(minutes) + ":" + pad(seconds) + ":" + milisecodns;
-    console.log(finalTime);
     stopwatch.textContent =
       pad(minutes) + ":" + pad(seconds) + ":" + milisecodns;
   }, 100);
