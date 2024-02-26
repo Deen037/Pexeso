@@ -405,8 +405,16 @@ let theme = localStorage.getItem("theme");
 let mode = localStorage.getItem("mode");
 
 function enhanceNavbar() {
-  document.getElementById(theme).style.color = "white";
-  document.getElementById(mode).style.color = "white";
+  if (theme) {
+    document.getElementById(theme).style.color = "white";
+  } else {
+    document.getElementById("animals").style.color = "white";
+  }
+  if (mode) {
+    document.getElementById(mode).style.color = "white";
+  } else {
+    document.getElementById("versus").style.color = "white";
+  }
 }
 enhanceNavbar();
 
