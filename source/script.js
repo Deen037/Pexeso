@@ -153,10 +153,15 @@ let isMatch = false;
 let matchedCounter = 0;
 let winsCounter1 = 0;
 let winsCounter2 = 0;
+let clickCounter = 0;
 
 const match = (field) => {
   isMatch = false;
   clickPerPlayer++;
+  clickCounter++;
+  if (clickCounter === 1 && localStorage.getItem("mode") === "solo") {
+    stopwatchStart();
+  }
   if (clickPerPlayer === 1) {
     pathToMatch = field.src;
   } else if (clickPerPlayer === 2) {
@@ -180,7 +185,14 @@ const match = (field) => {
     clickPerPlayer = 0;
   }
   if (matchedCounter === 10) {
-    displayWinner();
+    if (localStorage.getItem("mode") === "versus" || "") {
+      displayWinner();
+    }
+    if (localStorage.getItem("mode") === "solo") {
+      stopwatchStop();
+      displayResult();
+      console.log(clickCounter);
+    }
   }
 };
 
@@ -333,9 +345,22 @@ const displayWinner = () => {
     winsCounter2++;
     winner = elements.player2.name ? elements.player2.name : lang.player2;
   } else {
+    document.getElementById("theChamp").style.display = "none";
     winner = lang.tie;
   }
   document.getElementById("winnerName").innerHTML = winner;
+};
+
+const displayResult = () => {
+  document.getElementById("result").style.display = "flex";
+  for (let i = 1; i <= 20; i++) {
+    fields[i].src = poleNames[i - 1].img;
+  }
+  let name;
+  name = elements.playerSolo.name ? elements.playerSolo.name : lang.playerSolo;
+  document.getElementById("name").innerHTML = name;
+  document.getElementById("finalTime").innerHTML = finalTime;
+  document.getElementById("finalClicks").innerHTML = clickCounter;
 };
 
 //play again
@@ -351,6 +376,7 @@ function vanish() {
   matchedCounter = 0;
   clicks = 0;
   boxColourSwitcher = 0;
+  clickCounter = 0;
 }
 
 function playAgain() {
@@ -358,6 +384,7 @@ function playAgain() {
   poleNames = [];
   arrayNames();
   document.getElementById("winner").style.display = "none";
+  document.getElementById("result").style.display = "none";
   document.getElementsByClassName("helper")[0].style.display = "none";
   document.getElementById("p1wins").innerHTML = winsCounter1;
   document.getElementById("p2wins").innerHTML = winsCounter2;
@@ -385,8 +412,6 @@ enhanceNavbar();
 
 let headerVersus = document.getElementById("headerVersus");
 let headerSolo = document.getElementById("headerSolo");
-
-console.log(mode);
 
 switch (mode) {
   case "solo":
@@ -426,15 +451,19 @@ function pad(num) {
   return num.toString().padStart(2, "0");
 }
 
-function start() {
+let finalTime;
+
+function stopwatchStart() {
   timer = setInterval(() => {
     runTime();
+    finalTime = pad(minutes) + ":" + pad(seconds) + ":" + milisecodns;
+    console.log(finalTime);
     stopwatch.textContent =
       pad(minutes) + ":" + pad(seconds) + ":" + milisecodns;
   }, 100);
 }
 
-function stop() {
+function stopwatchStop() {
   clearInterval(timer);
   milisecodns = 0;
   seconds = 0;

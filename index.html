@@ -72,7 +72,7 @@
       <div id="headerSolo">
         <div id="formSolo">
           <form>
-            <input type="text" id="inputSolo" placeholder="Player 1" />
+            <input type="text" id="inputSolo" placeholder="Player X" />
             <input type="button" value="submit" id="subSolo" />
           </form>
         </div>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div id="watches">
-          <h3 id="time">00:00:0</h3>
+          <h3 id="time">00:00</h3>
         </div>
         <!-- <button onclick="start()">Ready</button>
         <button onclick="stop()">Stop</button> -->
@@ -176,9 +176,25 @@
     </main>
 
     <div id="winner">
-      <h3 id="theChamp">THE CHAMP</h3>
+      <h3 id="theChamp"></h3>
       <h1 id="winnerName"></h1>
-      <button id="playAgain" onclick="playAgain()">Play again</button>
+      <div>
+        <button id="playAgain" onclick="playAgain()">Play again</button>
+      </div>
+    </div>
+    <div id="result">
+      <h1 id="name"></h1>
+      <div>
+        <p>time</p>
+        <h2 id="finalTime"></h2>
+      </div>
+      <div>
+        <p>clicks</p>
+        <h2 id="finalClicks"></h2>
+      </div>
+      <div>
+        <button id="playAgain" onclick="playAgain()">Play again</button>
+      </div>
     </div>
     <script type="text/javascript" src="source/navbar.js"></script>
     <script type="text/javascript" src="source/router.js"></script>
