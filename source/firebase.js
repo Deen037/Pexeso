@@ -34,7 +34,7 @@ const db = getDatabase();
 const scores = ref(db, "scores/");
 
 export function upload(data) {
-  set(scores, data).catch((error) => {
+  push(scores, data).catch((error) => {
     alert("Data could not be saved" + error);
   });
 }
