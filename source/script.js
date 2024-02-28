@@ -191,7 +191,6 @@ const match = (field) => {
     if (localStorage.getItem("mode") === "solo") {
       stopwatchStop();
       displayResult();
-      console.log(clickCounter);
     }
   }
 };
@@ -234,8 +233,8 @@ let box4 = document.getElementById("box4");
 let leftArrow = document.getElementById("leftArrow");
 let rightArrow = document.getElementById("rightArrow");
 let youGo = document.getElementById("youGo");
-let input1 = document.getElementById("input1");
-let input2 = document.getElementById("input2");
+// let input1 = document.getElementById("input1");
+// let input2 = document.getElementById("input2");
 
 function switchNameColor() {
   youGo.style.color = "rgb(192, 192, 192)";
@@ -350,6 +349,14 @@ const displayWinner = () => {
   }
   document.getElementById("winnerName").innerHTML = winner;
 };
+import { upload, getScores } from "./firebase.js";
+
+function createNumberFrom(time) {
+  let output1 = time.split(":");
+  let output2 = "";
+  output1.forEach((num) => (output2 = output2 + num));
+  return Number(output2);
+}
 
 const displayResult = () => {
   document.getElementById("result").style.display = "flex";
@@ -361,6 +368,14 @@ const displayResult = () => {
   document.getElementById("name").innerHTML = name;
   document.getElementById("finalTime").innerHTML = stopwatch.textContent;
   document.getElementById("finalClicks").innerHTML = clickCounter;
+  const score = {
+    name: name,
+    time: stopwatch.textContent,
+    clicks: clickCounter,
+    timeInNumber: createNumberFrom(stopwatch.textContent),
+  };
+  upload(score);
+  getScores();
 };
 
 //play again
@@ -379,7 +394,7 @@ function vanish() {
   clickCounter = 0;
 }
 
-function playAgain() {
+export function playAgain() {
   poleNum = randomArray();
   poleNames = [];
   arrayNames();
@@ -398,6 +413,8 @@ function playAgain() {
   createThemeCards();
   vanish();
 }
+
+window.playAgain = playAgain;
 
 // navbar
 
