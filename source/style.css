@@ -309,8 +309,8 @@ s #row2,
 
 @media screen and (min-width: 500px) {
   #card img {
-    width: 100px;
-    height: 75px;
+    width: 80px;
+    height: 60px;
   }
 }
 
@@ -413,8 +413,14 @@ s #row2,
   }
 }
 
-#playAgain {
-  background-color: rgb(144, 99, 36);
+#playAgain,
+#topScores button {
+  background: linear-gradient(
+    to right,
+    rgb(236, 189, 101),
+    rgb(144, 99, 36),
+    rgb(236, 189, 101)
+  );
   border: none;
   border-radius: 5px;
   color: white;
@@ -426,19 +432,8 @@ s #row2,
   left: 50%;
   transform: translateX(-50%);
 }
-
 #topScores button {
-  width: 10%;
-  height: 5%;
-  border-radius: 10px;
-  background: linear-gradient(
-    to right,
-    rgb(236, 189, 101),
-    rgb(144, 99, 36),
-    rgb(236, 189, 101)
-  );
-  color: white;
-  font-size: 1vw;
+  font-size: large;
 }
 
 #topScores h3 {
