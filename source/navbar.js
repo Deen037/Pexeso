@@ -38,5 +38,4 @@ versus.addEventListener("click", function () {
 function enhanceTheme() {
   theme = localStorage.getItem("theme");
   theme.style.color = "white";
-  console.log("kks");
 }

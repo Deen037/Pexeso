@@ -83,10 +83,6 @@ const setPlayerName = (player) => {
   return player.name;
 };
 
-// let player1 = setPlayerName(elements.player1);
-// let player2 = setPlayerName(elements.player2);
-// let playerSolo = setPlayerName(elements.playerSolo);
-
 const addEventListeners = (player) => {
   player.val.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -100,6 +96,15 @@ const addEventListeners = (player) => {
 addEventListeners(elements.player1);
 addEventListeners(elements.player2);
 addEventListeners(elements.playerSolo);
+
+export const editName = (player) => {
+  elements[player].val.value = "";
+  elements[player].hide.style.display = "block";
+  elements[player].show.style.display = "none";
+  elements[player].val.focus();
+};
+
+window.editName = editName;
 
 const updateScore = (score, elementId) => {
   const scoreElement = document.getElementById(elementId);
@@ -349,7 +354,9 @@ const displayWinner = () => {
   }
   document.getElementById("winnerName").innerHTML = winner;
 };
+
 import { upload, getScores } from "./firebase.js";
+getScores();
 
 function createNumberFrom(time) {
   let output1 = time.split(":");
@@ -490,3 +497,15 @@ function stopwatchStop() {
   seconds = 0;
   minutes = 0;
 }
+
+export function showResults() {
+  topScores.style.display = "flex";
+}
+
+window.showResults = showResults;
+
+export function hideResults() {
+  topScores.style.display = "none";
+}
+
+window.hideResults = hideResults;

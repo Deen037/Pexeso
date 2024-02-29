@@ -33,10 +33,14 @@ const db = getDatabase();
 
 const scores = ref(db, "scores/");
 
+let timeInNumber;
+
 export function upload(data) {
   push(scores, data).catch((error) => {
     alert("Data could not be saved" + error);
   });
+
+  timeInNumber = data.timeInNumber;
 }
 
 let poleScores;
@@ -48,26 +52,35 @@ export function getScores() {
         (a, b) => a.timeInNumber - b.timeInNumber
       );
 
-      console.log(poleScores);
+      const findIndexByTime = (arr, time) => {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i].timeInNumber === time) {
+            return i + 1;
+          }
+        }
+        return -1;
+      };
 
-      document.getElementById("1").textContent =
-        poleScores[0].name +
-        " " +
-        poleScores[0].time +
-        " " +
-        poleScores[0].clicks;
-      document.getElementById("2").textContent =
-        poleScores[1].name +
-        " " +
-        poleScores[1].time +
-        " " +
-        poleScores[1].clicks;
-      document.getElementById("3").textContent =
-        poleScores[2].name +
-        " " +
-        poleScores[2].time +
-        " " +
-        poleScores[2].clicks;
+      document.getElementById("position").innerHTML = findIndexByTime(
+        poleScores,
+        timeInNumber
+      );
+
+      let results = document.getElementById("top20");
+      let pharagraph = results.getElementsByTagName("p");
+
+      if (pharagraph.length > 0) {
+        for (let j = pharagraph.length - 1; j >= 0; j--) {
+          results.removeChild(pharagraph[j]);
+        }
+      }
+
+      for (let i = 0; i < 20; i++) {
+        let newElement = document.createElement("p");
+        newElement.textContent =
+          i + 1 + ". " + poleScores[i].name + " " + poleScores[i].time;
+        results.appendChild(newElement);
+      }
     } else {
       console.log("No data available");
     }

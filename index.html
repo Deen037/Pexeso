@@ -20,7 +20,7 @@
               </form>
             </div>
             <div id="p1">
-              <h3 id="player1"></h3>
+              <h3 id="player1" onclick="editName('player1')">Player 1</h3>
             </div>
           </div>
           <h5 id="score1">0</h5>
@@ -34,7 +34,7 @@
               </form>
             </div>
             <div id="p2">
-              <h3 id="player2"></h3>
+              <h3 id="player2" onclick="editName('player2')">Player 2</h3>
             </div>
           </div>
         </div>
@@ -70,22 +70,25 @@
         </div>
       </div>
       <div id="headerSolo">
-        <div id="formSolo">
-          <form>
-            <input type="text" id="inputSolo" placeholder="Player X" />
-            <input type="button" value="submit" id="subSolo" />
-          </form>
-        </div>
-        <div class="players">
-          <div id="pS">
-            <h3 id="playerSolo"></h3>
+        <div id="leftSolo">
+          <div id="formSolo">
+            <form>
+              <input type="text" id="inputSolo" placeholder="Player" />
+              <input type="button" value="submit" id="subSolo" />
+            </form>
+          </div>
+          <div class="players">
+            <div id="pS">
+              <h3 id="playerSolo" onclick="editName('playerSolo')">Player</h3>
+            </div>
           </div>
         </div>
         <div id="watches">
           <h3 id="time">00:00</h3>
         </div>
-        <!-- <button onclick="start()">Ready</button>
-        <button onclick="stop()">Stop</button> -->
+        <div id="resultsButton">
+          <button onclick="showResults()">show best</button>
+        </div>
       </div>
     </header>
     <nav id="nav">
@@ -103,76 +106,80 @@
     </nav>
 
     <main class="board">
-      <div id="row1">
-        <div id="card">
-          <img src="" id="field1" />
+      <div id="boardLeft"></div>
+      <div id="boardMid">
+        <div id="row1">
+          <div id="card">
+            <img src="" id="field1" />
+          </div>
+          <div id="card">
+            <img src="" id="field2" />
+          </div>
+          <div id="card">
+            <img src="" id="field3" />
+          </div>
+          <div id="card">
+            <img src="" id="field4" />
+          </div>
         </div>
-        <div id="card">
-          <img src="" id="field2" />
+        <div id="row2">
+          <div id="card">
+            <img src="" id="field5" />
+          </div>
+          <div id="card">
+            <img src="" id="field6" />
+          </div>
+          <div id="card">
+            <img src="" id="field7" />
+          </div>
+          <div id="card">
+            <img src="" id="field8" />
+          </div>
         </div>
-        <div id="card">
-          <img src="" id="field3" />
+        <div id="row3">
+          <div id="card">
+            <img src="" id="field9" />
+          </div>
+          <div id="card">
+            <img src="" id="field10" />
+          </div>
+          <div id="card">
+            <img src="" id="field11" />
+          </div>
+          <div id="card">
+            <img src="" id="field12" />
+          </div>
         </div>
-        <div id="card">
-          <img src="" id="field4" />
+        <div id="row4">
+          <div id="card">
+            <img src="" id="field13" />
+          </div>
+          <div id="card">
+            <img src="" id="field14" />
+          </div>
+          <div id="card">
+            <img src="" id="field15" />
+          </div>
+          <div id="card">
+            <img src="" id="field16" />
+          </div>
+        </div>
+        <div id="row5">
+          <div id="card">
+            <img src="" id="field17" />
+          </div>
+          <div id="card">
+            <img src="" id="field18" />
+          </div>
+          <div id="card">
+            <img src="" id="field19" />
+          </div>
+          <div id="card">
+            <img src="" id="field20" />
+          </div>
         </div>
       </div>
-      <div id="row2">
-        <div id="card">
-          <img src="" id="field5" />
-        </div>
-        <div id="card">
-          <img src="" id="field6" />
-        </div>
-        <div id="card">
-          <img src="" id="field7" />
-        </div>
-        <div id="card">
-          <img src="" id="field8" />
-        </div>
-      </div>
-      <div id="row3">
-        <div id="card">
-          <img src="" id="field9" />
-        </div>
-        <div id="card">
-          <img src="" id="field10" />
-        </div>
-        <div id="card">
-          <img src="" id="field11" />
-        </div>
-        <div id="card">
-          <img src="" id="field12" />
-        </div>
-      </div>
-      <div id="row4">
-        <div id="card">
-          <img src="" id="field13" />
-        </div>
-        <div id="card">
-          <img src="" id="field14" />
-        </div>
-        <div id="card">
-          <img src="" id="field15" />
-        </div>
-        <div id="card">
-          <img src="" id="field16" />
-        </div>
-      </div>
-      <div id="row5">
-        <div id="card">
-          <img src="" id="field17" />
-        </div>
-        <div id="card">
-          <img src="" id="field18" />
-        </div>
-        <div id="card">
-          <img src="" id="field19" />
-        </div>
-        <div id="card">
-          <img src="" id="field20" />
-        </div>
-      </div>
+      <div id="boardRight"></div>
     </main>
 
     <div id="winner">
@@ -193,15 +200,17 @@
         <h2 id="finalClicks"></h2>
       </div>
       <div>
-        <p>Top3</p>
-        <p>Name Time Clicks</p>
-        <p id="1"></p>
-        <p id="2"></p>
-        <p id="3"></p>
+        <p>spot</p>
+        <h2 id="position"></h2>
       </div>
       <div>
         <button id="playAgain" onclick="playAgain()">Play again</button>
       </div>
+    </div>
+    <div id="topScores">
+      <h3>Top 20</h3>
+      <div id="top20"></div>
+      <button onclick="hideResults()">Let's show them who is the best!</button>
     </div>
     <script type="text/javascript" src="source/navbar.js"></script>
     <script type="text/javascript" src="source/router.js"></script>
