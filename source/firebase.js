@@ -43,29 +43,28 @@ export function upload(data) {
   timeInNumber = data.timeInNumber;
 }
 
-let poleScores;
-export let position;
+let scoreArr;
 
-export function getScores() {
-  get(scores).then((snapshot) => {
+const findIndexByTime = (arr, time) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].timeInNumber === time) {
+      return i + 1;
+    }
+  }
+  return -1;
+};
+
+export async function getScores() {
+  try {
+    const snapshot = await get(scores);
+
     if (snapshot.exists()) {
-      poleScores = Object.values(snapshot.val()).sort(
+      scoreArr = Object.values(snapshot.val()).sort(
         (a, b) => a.timeInNumber - b.timeInNumber
       );
 
-      const findIndexByTime = (arr, time) => {
-        for (let i = 0; i < arr.length; i++) {
-          if (arr[i].timeInNumber === time) {
-            return i + 1;
-          }
-        }
-        return -1;
-      };
-
-      position = findIndexByTime(poleScores, timeInNumber);
-
       document.getElementById("position").innerHTML = findIndexByTime(
-        poleScores,
+        scoreArr,
         timeInNumber
       );
 
@@ -84,30 +83,30 @@ export function getScores() {
         let rankTime = document.createElement("p");
         switch (i) {
           case 0:
-            rankAndName.textContent = "🥇" + poleScores[i].name;
-            rankTime.textContent = poleScores[i].time;
+            rankAndName.textContent = "🥇" + scoreArr[i].name;
+            rankTime.textContent = scoreArr[i].time;
             results.appendChild(rankDiv);
             rankDiv.appendChild(rankAndName);
             rankDiv.appendChild(rankTime);
 
             break;
           case 1:
-            rankAndName.textContent = "🥈" + poleScores[i].name;
-            rankTime.textContent = poleScores[i].time;
+            rankAndName.textContent = "🥈" + scoreArr[i].name;
+            rankTime.textContent = scoreArr[i].time;
             results.appendChild(rankDiv);
             rankDiv.appendChild(rankAndName);
             rankDiv.appendChild(rankTime);
             break;
           case 2:
-            rankAndName.textContent = "🥉" + poleScores[i].name;
-            rankTime.textContent = poleScores[i].time;
+            rankAndName.textContent = "🥉" + scoreArr[i].name;
+            rankTime.textContent = scoreArr[i].time;
             results.appendChild(rankDiv);
             rankDiv.appendChild(rankAndName);
             rankDiv.appendChild(rankTime);
             break;
           default:
-            rankAndName.textContent = i + 1 + ". " + poleScores[i].name;
-            rankTime.textContent = poleScores[i].time;
+            rankAndName.textContent = i + 1 + ". " + scoreArr[i].name;
+            rankTime.textContent = scoreArr[i].time;
             results.appendChild(rankDiv);
             rankDiv.appendChild(rankAndName);
             rankDiv.appendChild(rankTime);
@@ -116,5 +115,8 @@ export function getScores() {
     } else {
       console.log("No data available");
     }
-  });
+  } catch (error) {
+    ("Error fetching scoress");
+  }
+  return scoreArr;
 }

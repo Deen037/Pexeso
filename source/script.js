@@ -355,8 +355,11 @@ const displayWinner = () => {
   document.getElementById("winnerName").innerHTML = winner;
 };
 
-import { upload, getScores, position } from "./firebase.js";
-getScores();
+import { upload, getScores } from "./firebase.js";
+let fourthTime;
+getScores().then((scores) => {
+  fourthTime = scores[3].timeInNumber;
+});
 
 function createNumberFrom(time) {
   let output1 = time.split(":");
@@ -371,20 +374,24 @@ const displayResult = () => {
     fields[i].src = poleNames[i - 1].img;
   }
   let name;
+  let timeInNumber = createNumberFrom(stopwatch.textContent);
   name = elements.playerSolo.name ? elements.playerSolo.name : lang.playerSolo;
   document.getElementById("name").innerHTML = name;
   document.getElementById("finalTime").innerHTML = stopwatch.textContent;
   document.getElementById("finalClicks").innerHTML = clickCounter;
+
   const score = {
     name: name,
     time: stopwatch.textContent,
     clicks: clickCounter,
-    timeInNumber: createNumberFrom(stopwatch.textContent),
+    timeInNumber: timeInNumber,
   };
+
   upload(score);
   getScores();
 
-  if (position < 4) {
+  console.log(fourthTime);
+  if (timeInNumber < fourthTime) {
     triggerConfetti();
   }
 };
