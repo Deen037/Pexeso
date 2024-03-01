@@ -315,6 +315,8 @@ s #row2,
 #card img {
   width: 12vw;
   height: 9vw;
+  min-width: 100px;
+  min-height: 75px;
   border-radius: 10px;
 }
 
