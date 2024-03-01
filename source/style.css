@@ -428,6 +428,10 @@ footer {
   animation: gradient 20s ease infinite;
 }
 
+#topScores h3 {
+  margin-top: -20vh;
+}
+
 #result h1,
 #winner h1 {
   font-size: 10vh;

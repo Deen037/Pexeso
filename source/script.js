@@ -44,6 +44,18 @@ function createThemeCards() {
 
 createThemeCards();
 
+// set player names if exists
+
+function setNamesIfExists(player) {
+  let localPlayer = localStorage.getItem(player);
+  document.getElementById(player).innerText = localPlayer
+    ? localPlayer
+    : "Player";
+}
+setNamesIfExists("player1");
+setNamesIfExists("player2");
+setNamesIfExists("playerSolo");
+
 //inputs
 
 const elements = {
@@ -80,6 +92,17 @@ const setPlayerName = (player) => {
     player.show.style.display = "inline-block";
   }
   player.name = player.div.innerHTML;
+  switch (player) {
+    case elements.player1:
+      localStorage.setItem("player1", player.name);
+      break;
+    case elements.player2:
+      localStorage.setItem("player2", player.name);
+      break;
+    case elements.playerSolo:
+      localStorage.setItem("playerSolo", player.name);
+      break;
+  }
   return player.name;
 };
 
