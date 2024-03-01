@@ -44,6 +44,7 @@ export function upload(data) {
 }
 
 let poleScores;
+export let position;
 
 export function getScores() {
   get(scores).then((snapshot) => {
@@ -60,6 +61,8 @@ export function getScores() {
         }
         return -1;
       };
+
+      position = findIndexByTime(poleScores, timeInNumber);
 
       document.getElementById("position").innerHTML = findIndexByTime(
         poleScores,

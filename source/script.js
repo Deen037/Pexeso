@@ -355,7 +355,7 @@ const displayWinner = () => {
   document.getElementById("winnerName").innerHTML = winner;
 };
 
-import { upload, getScores } from "./firebase.js";
+import { upload, getScores, position } from "./firebase.js";
 getScores();
 
 function createNumberFrom(time) {
@@ -383,6 +383,10 @@ const displayResult = () => {
   };
   upload(score);
   getScores();
+
+  if (position < 4) {
+    triggerConfetti;
+  }
 };
 
 //play again
