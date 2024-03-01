@@ -385,7 +385,7 @@ const displayResult = () => {
   getScores();
 
   if (position < 4) {
-    triggerConfetti;
+    triggerConfetti();
   }
 };
 
