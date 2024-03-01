@@ -181,10 +181,14 @@
       </div>
       <div id="boardRight"></div>
     </main>
+    <footer>
+      <div id="line"></div>
+      <div id="rest">
+    </footer>
 
     <div id="winner">
-      <h3 id="theChamp"></h3>
       <h1 id="winnerName"></h1>
+       <h3 id="theChamp"></h3>
       <div>
         <button id="playAgain" onclick="playAgain()">Play again</button>
       </div>
@@ -208,9 +212,10 @@
       </div>
     </div>
     <div id="topScores">
-      <h3>Top 20</h3>
+      <h3 id="result20">Top 20</h3>
+      <h3 id="result3">Top 3</h3>
       <div id="top20"></div>
-      <button onclick="hideResults()">Let's show them who is the best!</button>
+      <button onclick="hideResults()">Let's go!</button>
     </div>
     <script type="text/javascript" src="source/navbar.js"></script>
     <script type="text/javascript" src="source/router.js"></script>

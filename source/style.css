@@ -3,15 +3,16 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: rgb(38, 35, 32);
+  background-color: rgb(23, 23, 23);
+  display: flex;
+  flex-direction: column;
 }
 
 /* header versus */
 
 header {
-  background-color: rgb(24, 23, 21);
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   height: 70px;
 }
 
@@ -135,17 +136,8 @@ h1 {
 #box4 {
   width: 10px;
   height: 10px;
-  border: 1px solid black;
 }
 
-#box1,
-#box2 {
-  background-color: rgb(64, 64, 64);
-}
-#box3,
-#box4 {
-  background-color: rgb(64, 64, 64);
-}
 .onMove {
   display: flex;
   justify-content: center;
@@ -156,7 +148,7 @@ h1 {
 #leftArrow,
 #rightArrow,
 #youGo {
-  color: rgb(38, 35, 32);
+  color: rgb(23, 23, 23);
 }
 
 p {
@@ -222,6 +214,24 @@ p {
   text-align: center;
 }
 
+#resultsButton button {
+  background-color: rgb(150, 150, 150);
+  color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+}
+
+#resultsButton button:hover {
+  cursor: pointer;
+  background-color: goldenrod;
+  color: rgb(23, 23, 23);
+  transition: all 0.3s;
+}
+
+#resultsButton button:not(:hover) {
+  transition: all 0.3s;
+}
+
 /* navbar */
 
 nav {
@@ -268,6 +278,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(33, 33, 33);
 }
 
 #boardLeft {
@@ -307,6 +318,23 @@ s #row2,
   border-radius: 10px;
 }
 
+/* footer */
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(23, 23, 23);
+  width: 100%;
+  min-height: 130px;
+}
+
+#line {
+  height: 30px;
+  background-color: black;
+  width: 100%;
+}
+
 @media screen and (min-width: 500px) {
   #card img {
     width: 100px;
@@ -342,6 +370,24 @@ s #row2,
   }
 }
 
+@media screen and (min-width: 700px) {
+  #result3 {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  #top20 div:nth-child(n + 4):nth-child(-n + 20) {
+    display: none;
+  }
+  #result20 {
+    display: none;
+  }
+  #result3 {
+    display: block;
+  }
+}
+
 #winner,
 #result,
 #topScores {
@@ -358,11 +404,7 @@ s #row2,
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 100px;
-}
-
-#top20 {
-  gap: 20px;
+  gap: 10vh;
 }
 
 #winner h1,
@@ -388,18 +430,18 @@ s #row2,
 
 #result h1,
 #winner h1 {
-  font-size: 100px;
+  font-size: 10vh;
   margin-top: -20vh;
 }
 
 #result h1,
 #result h2 {
   text-align: center;
-  font-size: 50px;
+  font-size: 5vh;
 }
 
 #result p {
-  font-size: 30px;
+  font-size: 3vh;
   color: white;
   text-align: center;
 }
@@ -424,7 +466,7 @@ s #row2,
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 30px;
+  font-size: 3vh;
   padding: 10px;
   margin-bottom: 20px;
   position: fixed;
@@ -432,36 +474,58 @@ s #row2,
   left: 50%;
   transform: translateX(-50%);
 }
+
+#playAgain:hover,
+#topScores button:hover {
+  cursor: pointer;
+  text-shadow: 0 0 5px white;
+  transition: all 0.3s;
+}
+
+#playAgain:hover,
+#topScores button:not(:hover) {
+  transition: all 0.3s;
+}
+
 #topScores button {
   font-size: large;
 }
 
 #topScores h3 {
-  font-size: 2vw;
+  font-size: 5vh;
 }
 
 #topScores p {
   color: white;
   font-size: 1.5vh;
   padding-bottom: 5px;
-  text-align: center;
+  text-align: left;
 }
 
-#topScores p:nth-child(3) {
+#top20 div {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+#top20 div:nth-child(3) {
   margin-bottom: 20px; /* Adjust the value as needed */
 }
 
-#topScores p:nth-child(1) {
+#top20 div:nth-child(1) p {
   font-size: x-large;
-  color: gold; /* Adjust the value as needed */
+  color: rgb(248 224 138);
+  padding-bottom: 10px;
 }
 
-#topScores p:nth-child(2) {
+#top20 div:nth-child(2) p {
   font-size: x-large;
-  color: silver; /* Adjust the value as needed */
+  color: rgb(224, 224, 224);
+  padding-bottom: 10px;
 }
 
-#topScores p:nth-child(3) {
+#top20 div:nth-child(3) p {
   font-size: x-large;
-  color: rgb(205, 127, 50); /* Adjust the value as needed */
+  color: rgb(230, 152, 61);
+  padding-bottom: 10px;
 }

@@ -76,10 +76,39 @@ export function getScores() {
       }
 
       for (let i = 0; i < 20; i++) {
-        let newElement = document.createElement("p");
-        newElement.textContent =
-          i + 1 + ". " + poleScores[i].name + " " + poleScores[i].time;
-        results.appendChild(newElement);
+        let rankDiv = document.createElement("div");
+        let rankAndName = document.createElement("p");
+        let rankTime = document.createElement("p");
+        switch (i) {
+          case 0:
+            rankAndName.textContent = "🥇" + poleScores[i].name;
+            rankTime.textContent = poleScores[i].time;
+            results.appendChild(rankDiv);
+            rankDiv.appendChild(rankAndName);
+            rankDiv.appendChild(rankTime);
+
+            break;
+          case 1:
+            rankAndName.textContent = "🥈" + poleScores[i].name;
+            rankTime.textContent = poleScores[i].time;
+            results.appendChild(rankDiv);
+            rankDiv.appendChild(rankAndName);
+            rankDiv.appendChild(rankTime);
+            break;
+          case 2:
+            rankAndName.textContent = "🥉" + poleScores[i].name;
+            rankTime.textContent = poleScores[i].time;
+            results.appendChild(rankDiv);
+            rankDiv.appendChild(rankAndName);
+            rankDiv.appendChild(rankTime);
+            break;
+          default:
+            rankAndName.textContent = i + 1 + ". " + poleScores[i].name;
+            rankTime.textContent = poleScores[i].time;
+            results.appendChild(rankDiv);
+            rankDiv.appendChild(rankAndName);
+            rankDiv.appendChild(rankTime);
+        }
       }
     } else {
       console.log("No data available");
