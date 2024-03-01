@@ -313,8 +313,8 @@ s #row2,
   margin: 2px;
 }
 #card img {
-  width: 160px;
-  height: 120px;
+  width: 12vw;
+  height: 9vw;
   border-radius: 10px;
 }
 
@@ -333,41 +333,6 @@ footer {
   height: 30px;
   background-color: black;
   width: 100%;
-}
-
-@media screen and (min-width: 500px) {
-  #card img {
-    width: 100px;
-    height: 75px;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  #card img {
-    width: 160px;
-    height: 120px;
-  }
-}
-
-@media screen and (min-width: 1500px) {
-  #card img {
-    width: 200px;
-    height: 150px;
-  }
-}
-
-@media screen and (min-width: 2000px) {
-  #card img {
-    width: 240px;
-    height: 180px;
-  }
-}
-
-@media screen and (min-width: 2500px) {
-  #card img {
-    width: 400px;
-    height: 300px;
-  }
 }
 
 @media screen and (min-width: 700px) {

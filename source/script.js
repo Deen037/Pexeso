@@ -50,7 +50,7 @@ function setNamesIfExists(player) {
   let localPlayer = localStorage.getItem(player);
   document.getElementById(player).innerText = localPlayer
     ? localPlayer
-    : "Player";
+    : player;
 }
 setNamesIfExists("player1");
 setNamesIfExists("player2");
