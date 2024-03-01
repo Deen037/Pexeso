@@ -48,9 +48,24 @@ createThemeCards();
 
 function setNamesIfExists(player) {
   let localPlayer = localStorage.getItem(player);
-  document.getElementById(player).innerText = localPlayer
-    ? localPlayer
-    : player;
+  let localPlayerName;
+
+  if (localPlayer) {
+    localPlayerName = localPlayer;
+  } else {
+    switch (player) {
+      case "player1":
+        localPlayerName = "Player 1";
+        break;
+      case "player2":
+        localPlayerName = "Player 2";
+        break;
+      case "playerSolo":
+        localPlayerName = "Player";
+        break;
+    }
+  }
+  document.getElementById(player).innerText = localPlayerName;
 }
 setNamesIfExists("player1");
 setNamesIfExists("player2");
@@ -363,14 +378,17 @@ const displayWinner = () => {
     fields[i].src = poleNames[i - 1].img;
   }
   let winner;
+  let winner1 = localStorage.getItem("player1");
+  let winner2 = localStorage.getItem("player2");
+
   if (score[0] > score[1]) {
     triggerConfetti();
     winsCounter1++;
-    winner = elements.player1.name ? elements.player1.name : lang.player1;
+    winner = winner1 ? winner1 : lang.player1;
   } else if (score[0] < score[1]) {
     triggerConfetti();
     winsCounter2++;
-    winner = elements.player2.name ? elements.player2.name : lang.player2;
+    winner = winner2 ? winner2 : lang.player2;
   } else {
     document.getElementById("theChamp").style.display = "none";
     winner = lang.tie;
@@ -396,10 +414,10 @@ const displayResult = () => {
   for (let i = 1; i <= 20; i++) {
     fields[i].src = poleNames[i - 1].img;
   }
-  let name;
+
+  let name = localStorage.getItem("playerSolo");
   let timeInNumber = createNumberFrom(stopwatch.textContent);
-  name = elements.playerSolo.name ? elements.playerSolo.name : lang.playerSolo;
-  document.getElementById("name").innerHTML = name;
+  document.getElementById("name").innerHTML = name ? name : lang.playerSolo;
   document.getElementById("finalTime").innerHTML = stopwatch.textContent;
   document.getElementById("finalClicks").innerHTML = clickCounter;
 
@@ -413,7 +431,6 @@ const displayResult = () => {
   upload(score);
   getScores();
 
-  console.log(fourthTime);
   if (timeInNumber < fourthTime) {
     triggerConfetti();
   }
