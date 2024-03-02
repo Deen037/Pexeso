@@ -302,7 +302,7 @@ nav {
 }
 
 #row1,
-s #row2,
+#row2,
 #row3,
 #row4,
 #row5 {
@@ -318,6 +318,11 @@ s #row2,
   min-width: 100px;
   min-height: 75px;
   border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#card img.fade-out {
+  opacity: 0;
 }
 
 /* footer */
@@ -337,13 +342,13 @@ footer {
   width: 100%;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-height: 600px) {
   #result3 {
     display: none;
   }
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 600px) {
   #top20 div:nth-child(n + 4):nth-child(-n + 20) {
     display: none;
   }

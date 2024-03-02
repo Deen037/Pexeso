@@ -16,7 +16,12 @@
             <div id="form1">
               <form>
                 <input type="button" value="submit" id="sub1" />
-                <input type="text" id="input1" placeholder="Player 1" />
+                <input
+                  type="text"
+                  maxlength="10"
+                  id="input1"
+                  placeholder="Player 1"
+                />
               </form>
             </div>
             <div id="p1">
@@ -29,7 +34,12 @@
           <div class="players">
             <div id="form2">
               <form>
-                <input type="text" id="input2" placeholder="Player 2" />
+                <input
+                  type="text"
+                  id="input2"
+                  maxlength="10"
+                  placeholder="Player 2"
+                />
                 <input type="button" value="submit" id="sub2" />
               </form>
             </div>
@@ -73,7 +83,12 @@
         <div id="leftSolo">
           <div id="formSolo">
             <form>
-              <input type="text" id="inputSolo" placeholder="Player" />
+              <input
+                type="text"
+                maxlength="10"
+                id="inputSolo"
+                placeholder="Player"
+              />
               <input type="button" value="submit" id="subSolo" />
             </form>
           </div>
@@ -183,12 +198,11 @@
     </main>
     <footer>
       <div id="line"></div>
-      <div id="rest">
     </footer>
 
     <div id="winner">
       <h1 id="winnerName"></h1>
-       <h3 id="theChamp"></h3>
+      <h3 id="theChamp"></h3>
       <div>
         <button id="playAgain" onclick="playAgain()">Play again</button>
       </div>

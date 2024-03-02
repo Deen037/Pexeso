@@ -249,11 +249,23 @@ const znova = (field) => {
     click1 = field;
   } else if (clicks === 2) {
     click2 = field;
-  } else {
     if (click1.src === click2.src) {
-      click1.src = cards[11].img;
-      click2.src = cards[11].img;
-    } else {
+      setTimeout(() => {
+        click1.src = cards[11].img;
+        click2.src = cards[11].img;
+      }, 100);
+
+      // document.getElementById("field1").src = cards[11].img;
+      // document.getElementById("field1").classList.add("fade-out");
+      // // If you want to remove the fade-out class after a delay
+      // setTimeout(() => {
+      //   document.getElementById("field1").classList.remove("fade-out");
+      //   click1.src = cards[11].img;
+      //   click2.src = cards[11].img;
+      // }, 500);
+    }
+  } else {
+    if (click1.src !== click2.src) {
       click1.src = cards[10].img;
       click2.src = cards[10].img;
       if (boxColourSwitcher === 0) {
@@ -276,8 +288,6 @@ let box4 = document.getElementById("box4");
 let leftArrow = document.getElementById("leftArrow");
 let rightArrow = document.getElementById("rightArrow");
 let youGo = document.getElementById("youGo");
-// let input1 = document.getElementById("input1");
-// let input2 = document.getElementById("input2");
 
 function switchNameColor() {
   youGo.style.color = "rgb(192, 192, 192)";
@@ -470,6 +480,8 @@ export function playAgain() {
   addAtributes();
   createThemeCards();
   vanish();
+  getScores();
+  location.reload();
 }
 
 window.playAgain = playAgain;
