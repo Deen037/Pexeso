@@ -33,90 +33,22 @@ const db = getDatabase();
 
 const scores = ref(db, "scores/");
 
-let timeInNumber;
-
 export function upload(data) {
   push(scores, data).catch((error) => {
     alert("Data could not be saved" + error);
   });
-
-  timeInNumber = data.timeInNumber;
 }
 
-let scoreArr;
-
-const findIndexByTime = (arr, time) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].timeInNumber === time) {
-      return i + 1;
-    }
-  }
-  return -1;
-};
+export let scoreArr;
 
 export async function getScores() {
-  try {
-    const snapshot = await get(scores);
+  const snapshot = await get(scores);
 
-    if (snapshot.exists()) {
-      scoreArr = Object.values(snapshot.val()).sort(
-        (a, b) => a.timeInNumber - b.timeInNumber
-      );
-
-      document.getElementById("position").innerHTML = findIndexByTime(
-        scoreArr,
-        timeInNumber
-      );
-
-      let results = document.getElementById("top20");
-      let pharagraph = results.getElementsByTagName("p");
-
-      if (pharagraph.length > 0) {
-        for (let j = pharagraph.length - 1; j >= 0; j--) {
-          results.removeChild(pharagraph[j]);
-        }
-      }
-
-      for (let i = 0; i < 20; i++) {
-        let rankDiv = document.createElement("div");
-        let rankAndName = document.createElement("p");
-        let rankTime = document.createElement("p");
-        switch (i) {
-          case 0:
-            rankAndName.textContent = "🥇" + scoreArr[i].name;
-            rankTime.textContent = scoreArr[i].time;
-            results.appendChild(rankDiv);
-            rankDiv.appendChild(rankAndName);
-            rankDiv.appendChild(rankTime);
-
-            break;
-          case 1:
-            rankAndName.textContent = "🥈" + scoreArr[i].name;
-            rankTime.textContent = scoreArr[i].time;
-            results.appendChild(rankDiv);
-            rankDiv.appendChild(rankAndName);
-            rankDiv.appendChild(rankTime);
-            break;
-          case 2:
-            rankAndName.textContent = "🥉" + scoreArr[i].name;
-            rankTime.textContent = scoreArr[i].time;
-            results.appendChild(rankDiv);
-            rankDiv.appendChild(rankAndName);
-            rankDiv.appendChild(rankTime);
-            break;
-          default:
-            rankAndName.textContent = i + 1 + ". " + scoreArr[i].name;
-            rankTime.textContent = scoreArr[i].time;
-            results.appendChild(rankDiv);
-            rankDiv.appendChild(rankAndName);
-            rankDiv.appendChild(rankTime);
-        }
-      }
-    } else {
-      console.log("No data available");
-    }
-  } catch (error) {
-    ("Error fetching scoress");
+  if (snapshot.exists()) {
+    scoreArr = Object.values(snapshot.val()).sort(
+      (a, b) => a.timeInNumber - b.timeInNumber
+    );
+  } else {
+    console.log("No data available");
   }
-  return scoreArr;
 }

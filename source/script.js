@@ -1,3 +1,7 @@
+import { findIndexByTime } from "./helpers.js";
+import { stopwatchStart, stopwatchStop, stopwatch } from "./stopwatch.js";
+import { upload, getScores, scoreArr } from "./firebase.js";
+
 //setLanguage
 
 let language = themes[themeKey].language;
@@ -371,7 +375,9 @@ function playerClick() {
 
 playerClick();
 
-//display winner
+//display results
+
+getScores();
 
 function triggerConfetti() {
   confetti({
@@ -382,6 +388,7 @@ function triggerConfetti() {
   });
 }
 
+//vs
 const displayWinner = () => {
   document.getElementById("winner").style.display = "flex";
   for (let i = 1; i <= 20; i++) {
@@ -406,12 +413,7 @@ const displayWinner = () => {
   document.getElementById("winnerName").innerHTML = winner;
 };
 
-import { upload, getScores } from "./firebase.js";
-let fourthTime;
-getScores().then((scores) => {
-  fourthTime = scores[3].timeInNumber;
-});
-
+//solo
 function createNumberFrom(time) {
   let output1 = time.split(":");
   let output2 = "";
@@ -430,6 +432,10 @@ const displayResult = () => {
   document.getElementById("name").innerHTML = name ? name : lang.playerSolo;
   document.getElementById("finalTime").innerHTML = stopwatch.textContent;
   document.getElementById("finalClicks").innerHTML = clickCounter;
+  document.getElementById("position").innerHTML = findIndexByTime(
+    scoreArr,
+    timeInNumber
+  );
 
   const score = {
     name: name,
@@ -439,12 +445,71 @@ const displayResult = () => {
   };
 
   upload(score);
-  getScores();
 
-  if (timeInNumber < fourthTime) {
+  if (timeInNumber < scoreArr[3].timeInNumber) {
     triggerConfetti();
   }
 };
+
+function show20Best() {
+  let results = document.getElementById("top20");
+  let pharagraph = results.getElementsByTagName("p");
+
+  if (pharagraph.length > 0) {
+    for (let j = pharagraph.length - 1; j >= 0; j--) {
+      results.removeChild(pharagraph[j]);
+    }
+  }
+
+  for (let i = 0; i < 20; i++) {
+    let rankDiv = document.createElement("div");
+    let rankAndName = document.createElement("p");
+    let rankTime = document.createElement("p");
+    switch (i) {
+      case 0:
+        rankAndName.textContent = "🥇" + scoreArr[i].name;
+        rankTime.textContent = scoreArr[i].time;
+        results.appendChild(rankDiv);
+        rankDiv.appendChild(rankAndName);
+        rankDiv.appendChild(rankTime);
+
+        break;
+      case 1:
+        rankAndName.textContent = "🥈" + scoreArr[i].name;
+        rankTime.textContent = scoreArr[i].time;
+        results.appendChild(rankDiv);
+        rankDiv.appendChild(rankAndName);
+        rankDiv.appendChild(rankTime);
+        break;
+      case 2:
+        rankAndName.textContent = "🥉" + scoreArr[i].name;
+        rankTime.textContent = scoreArr[i].time;
+        results.appendChild(rankDiv);
+        rankDiv.appendChild(rankAndName);
+        rankDiv.appendChild(rankTime);
+        break;
+      default:
+        rankAndName.textContent = i + 1 + ". " + scoreArr[i].name;
+        rankTime.textContent = scoreArr[i].time;
+        results.appendChild(rankDiv);
+        rankDiv.appendChild(rankAndName);
+        rankDiv.appendChild(rankTime);
+    }
+  }
+}
+
+export function showResults() {
+  show20Best();
+  topScores.style.display = "flex";
+}
+
+window.showResults = showResults;
+
+export function hideResults() {
+  topScores.style.display = "none";
+}
+
+window.hideResults = hideResults;
 
 //play again
 
@@ -481,7 +546,6 @@ export function playAgain() {
   createThemeCards();
   vanish();
   getScores();
-  location.reload();
 }
 
 window.playAgain = playAgain;
@@ -518,57 +582,3 @@ switch (mode) {
     headerSolo.style.display = "none";
     break;
 }
-
-// Stopwatch
-
-let stopwatch = document.getElementById("time");
-
-let milisecodns = 0;
-let seconds = 0;
-let minutes = 0;
-let timer;
-
-function runTime() {
-  milisecodns++;
-
-  if (milisecodns === 10) {
-    milisecodns = 0;
-    seconds++;
-  }
-
-  if (seconds === 60) {
-    seconds = 0;
-    minutes++;
-  }
-}
-
-function pad(num) {
-  return num.toString().padStart(2, "0");
-}
-
-function stopwatchStart() {
-  timer = setInterval(() => {
-    runTime();
-    stopwatch.textContent =
-      pad(minutes) + ":" + pad(seconds) + ":" + milisecodns;
-  }, 100);
-}
-
-function stopwatchStop() {
-  clearInterval(timer);
-  milisecodns = 0;
-  seconds = 0;
-  minutes = 0;
-}
-
-export function showResults() {
-  topScores.style.display = "flex";
-}
-
-window.showResults = showResults;
-
-export function hideResults() {
-  topScores.style.display = "none";
-}
-
-window.hideResults = hideResults;
