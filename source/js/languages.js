@@ -1,4 +1,4 @@
-const languages = {
+export const languages = {
   english: {
     prompt: "Please enter code.",
     player1: "Player 1",

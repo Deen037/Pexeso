@@ -6,6 +6,8 @@ import {
 } from "./helpers.js";
 import { stopwatchStart, stopwatchStop, stopwatch } from "./stopwatch.js";
 import { upload, getScores, scoreArr } from "./firebase.js";
+import { themes } from "./themes.js";
+import { languages } from "./languages.js";
 
 //setLanguage
 
@@ -183,12 +185,12 @@ let poleNum = randomArray();
 
 // priradenie mien k pozicii v random array
 let pol = 0;
-let poleNames = [];
+let arrNames = [];
 const arrayNames = () => {
   for (let i = 0; i <= 20; i++) {
     cards.forEach((card) => {
       if (card.x === poleNum[i] || card.y === poleNum[i]) {
-        poleNames.push(card);
+        arrNames.push(card);
       }
     });
   }
@@ -252,7 +254,7 @@ let click1;
 let click2;
 let boxColourSwitcher = 0;
 
-const znova = (field) => {
+const twoClicksLoop = (field) => {
   clicks++;
   if (clicks === 1) {
     click1 = field;
@@ -358,13 +360,14 @@ function playerClick() {
     (function (i) {
       fields[i].onclick = () => {
         if (
-          getRelativePath(fields[i].src) === poleNames[i - 1].img ||
+          getRelativePath(fields[i].src) === arrNames[i - 1].img ||
           getRelativePath(fields[i].src) === cards[11].img
         ) {
+          //missclick handle
         } else {
-          fields[i].src = poleNames[i - 1].img;
+          fields[i].src = arrNames[i - 1].img;
           match(fields[i]);
-          znova(fields[i]);
+          twoClicksLoop(fields[i]);
           switchNameColor();
           switchBoxColour();
         }
@@ -383,7 +386,7 @@ getScores();
 const displayWinner = () => {
   document.getElementById("winner").style.display = "flex";
   for (let i = 1; i <= 20; i++) {
-    fields[i].src = poleNames[i - 1].img;
+    fields[i].src = arrNames[i - 1].img;
   }
   let winner;
   let winner1 = localStorage.getItem("player1");
@@ -409,7 +412,7 @@ const displayWinner = () => {
 const displayResult = () => {
   document.getElementById("result").style.display = "flex";
   for (let i = 1; i <= 20; i++) {
-    fields[i].src = poleNames[i - 1].img;
+    fields[i].src = arrNames[i - 1].img;
   }
 
   let name = localStorage.getItem("playerSolo");
@@ -514,7 +517,7 @@ function vanish() {
 
 export function playAgain() {
   poleNum = randomArray();
-  poleNames = [];
+  arrNames = [];
   arrayNames();
   document.getElementById("winner").style.display = "none";
   document.getElementById("result").style.display = "none";
