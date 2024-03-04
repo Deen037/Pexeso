@@ -1,4 +1,9 @@
-import { findIndexByTime } from "./helpers.js";
+import {
+  findIndexByTime,
+  createNumberFrom,
+  triggerConfetti,
+  getRelativePath,
+} from "./helpers.js";
 import { stopwatchStart, stopwatchStop, stopwatch } from "./stopwatch.js";
 import { upload, getScores, scoreArr } from "./firebase.js";
 
@@ -163,16 +168,16 @@ const comparator = (x, y) => {
 };
 
 const randomArray = () => {
-  let pole = [];
-  if (pole.length !== 20) {
+  let arr = [];
+  if (arr.length !== 20) {
     for (let i = 1; i <= 1000; i++) {
       let j = Math.floor(Math.random() * 20);
-      if (!comparator(pole, j)) {
-        pole.push(j);
+      if (!comparator(arr, j)) {
+        arr.push(j);
       }
     }
   }
-  return pole;
+  return arr;
 };
 let poleNum = randomArray();
 
@@ -200,13 +205,13 @@ let isMatch = false;
 let matchedCounter = 0;
 let winsCounter1 = 0;
 let winsCounter2 = 0;
-let clickCounter = 0;
+let soloClickCounter = 0;
 
 const match = (field) => {
   isMatch = false;
   clickPerPlayer++;
-  clickCounter++;
-  if (clickCounter === 1 && localStorage.getItem("mode") === "solo") {
+  soloClickCounter++;
+  if (soloClickCounter === 1 && localStorage.getItem("mode") === "solo") {
     stopwatchStart();
   }
   if (clickPerPlayer === 1) {
@@ -348,11 +353,6 @@ function switchBoxColour() {
 
 //onClick functionality
 
-function getRelativePath(url) {
-  const startPos = url.indexOf("/source");
-  return "." + url.slice(startPos);
-}
-
 function playerClick() {
   for (let i = 1; i <= 20; i++) {
     (function (i) {
@@ -378,15 +378,6 @@ playerClick();
 //display results
 
 getScores();
-
-function triggerConfetti() {
-  confetti({
-    particleCount: 100,
-    spread: 100,
-    origin: { y: 0.5 },
-    tricks: 700,
-  });
-}
 
 //vs
 const displayWinner = () => {
@@ -414,12 +405,6 @@ const displayWinner = () => {
 };
 
 //solo
-function createNumberFrom(time) {
-  let output1 = time.split(":");
-  let output2 = "";
-  output1.forEach((num) => (output2 = output2 + num));
-  return Number(output2);
-}
 
 const displayResult = () => {
   document.getElementById("result").style.display = "flex";
@@ -431,7 +416,7 @@ const displayResult = () => {
   let timeInNumber = createNumberFrom(stopwatch.textContent);
   document.getElementById("name").innerHTML = name ? name : lang.playerSolo;
   document.getElementById("finalTime").innerHTML = stopwatch.textContent;
-  document.getElementById("finalClicks").innerHTML = clickCounter;
+  document.getElementById("finalClicks").innerHTML = soloClickCounter;
   document.getElementById("position").innerHTML = findIndexByTime(
     scoreArr,
     timeInNumber
@@ -440,7 +425,7 @@ const displayResult = () => {
   const score = {
     name: name,
     time: stopwatch.textContent,
-    clicks: clickCounter,
+    clicks: soloClickCounter,
     timeInNumber: timeInNumber,
   };
 
@@ -524,7 +509,7 @@ function vanish() {
   matchedCounter = 0;
   clicks = 0;
   boxColourSwitcher = 0;
-  clickCounter = 0;
+  soloClickCounter = 0;
 }
 
 export function playAgain() {
@@ -549,36 +534,3 @@ export function playAgain() {
 }
 
 window.playAgain = playAgain;
-
-// navbar
-
-let theme = localStorage.getItem("theme");
-let mode = localStorage.getItem("mode");
-
-function enhanceNavbar() {
-  if (theme) {
-    document.getElementById(theme).style.color = "rgb(255, 182, 193)";
-  } else {
-    document.getElementById("animals").style.color = "rgb(255, 182, 193)";
-  }
-  if (mode) {
-    document.getElementById(mode).style.color = "rgb(173, 216, 230)";
-  } else {
-    document.getElementById("versus").style.color = "rgb(173, 216, 230)";
-  }
-}
-enhanceNavbar();
-
-let headerVersus = document.getElementById("headerVersus");
-let headerSolo = document.getElementById("headerSolo");
-
-switch (mode) {
-  case "solo":
-    headerVersus.style.display = "none";
-    headerSolo.style.display = "block";
-    break;
-  case "versus":
-    headerVersus.style.display = "block";
-    headerSolo.style.display = "none";
-    break;
-}
