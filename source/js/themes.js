@@ -101,7 +101,7 @@ export const themes = {
   animals: {
     1: { name: "Bear", img: "./source/img/animals/bear.jpg" },
     2: { name: "dog", img: "./source/img/animals/dog.jpg" },
-    3: { name: "dolphin", img: "./source/img/animals/dolphin.jpg" },
+    3: { name: "rebbit", img: "./source/img/animals/rabbit.jpg" },
     4: { name: "elephant", img: "./source/img/animals/elephant.jpg" },
     5: { name: "gorilla", img: "./source/img/animals/gorilla.jpg" },
     6: { name: "hippo", img: "./source/img/animals/hippo.jpg" },
