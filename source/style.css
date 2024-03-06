@@ -16,10 +16,8 @@ header {
 }
 #headerLeft,
 #headerRight {
-  height: 100%;
   width: 5%;
 }
-
 #headerMid {
   width: 90%;
 }
@@ -57,12 +55,11 @@ i:hover {
 #form1,
 #form2 {
   display: none;
-  width: 250px;
+  width: 300px;
 }
 
 #input1,
 #input2 {
-  width: 150px;
   border: none;
   border-bottom: 1px solid black;
   background-color: transparent;
@@ -118,7 +115,7 @@ h1 {
 #p2 {
   margin: 0;
   padding: 0;
-  width: 250px;
+  width: 300px;
   text-align: center;
   display: block;
 }
@@ -134,7 +131,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 250px;
+  width: 300px;
   gap: 10px;
   margin: 5px;
 }
