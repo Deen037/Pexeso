@@ -8,12 +8,32 @@ body {
   flex-direction: column;
 }
 
-/* header versus */
-
 header {
+  display: flex;
   padding-top: 10px;
   padding-bottom: 5px;
   height: 70px;
+}
+#headerLeft,
+#headerRight {
+  height: 100%;
+  width: 5%;
+}
+
+#headerMid {
+  width: 90%;
+}
+
+i {
+  color: rgb(200, 200, 200);
+  font-size: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+i:hover {
+  cursor: pointer;
+  color: white;
 }
 
 .headerTop,
@@ -67,7 +87,7 @@ header {
 
 #score1,
 #score2 {
-  color: white;
+  color: rgb(221, 221, 221);
   font-size: 30px;
 }
 #score1 {
@@ -232,6 +252,20 @@ p {
   transition: all 0.3s;
 }
 
+#player1,
+#player2,
+#playerSolo {
+  cursor: pointer;
+  color: rgb(221, 221, 221);
+}
+
+#player1:hover,
+#player2:hover,
+#playerSolo:hover {
+  cursor: pointer;
+  color: white;
+}
+
 /* navbar */
 
 nav {
@@ -243,6 +277,13 @@ nav {
   gap: 20px;
   justify-content: center;
   align-items: center;
+}
+
+#navLeft,
+#navRight {
+  width: 5%;
+  background-color: blanchedalmond;
+  height: 100%;
 }
 
 .themes,

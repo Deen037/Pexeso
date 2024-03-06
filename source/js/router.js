@@ -1,24 +1,27 @@
 let themeKey;
+let themes = document.getElementsByClassName("themes")[0];
+let home = document.querySelector("#headerLeft a");
 
 const routes = {
   "/": function () {
     themeKey = localStorage.getItem("theme") || "animals";
+    home.style.display = "none";
   },
   "/bds": function () {
     themeKey = "bds";
-    document.getElementById("nav").style.display = "none";
+    themes.style.display = "none";
   },
   "/lili": function () {
     themeKey = "lili";
-    document.getElementById("nav").style.display = "none";
+    themes.style.display = "none";
   },
   "/gfa": function () {
     themeKey = "gfa";
-    document.getElementById("nav").style.display = "none";
+    themes.style.display = "none";
   },
   "/rebenka": function () {
     themeKey = "rebenka";
-    document.getElementById("nav").style.display = "none";
+    themes.style.display = "none";
   },
 };
 
