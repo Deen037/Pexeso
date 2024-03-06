@@ -239,6 +239,12 @@ const match = (field) => {
     clickPerPlayer = 0;
   }
   if (matchedCounter === 10) {
+    for (let i = 1; i <= 20; i++) {
+      setTimeout(() => {
+        fields[i].src = arrNames[i - 1].img;
+      }, i * 30);
+    }
+
     if (localStorage.getItem("mode") === "versus" || "") {
       displayWinner();
     }
@@ -366,8 +372,8 @@ function playerClick() {
           //missclick handle
         } else {
           fields[i].src = arrNames[i - 1].img;
-          match(fields[i]);
           twoClicksLoop(fields[i]);
+          match(fields[i]);
           switchNameColor();
           switchBoxColour();
         }
@@ -385,9 +391,7 @@ getScores();
 //vs
 const displayWinner = () => {
   document.getElementById("winner").style.display = "flex";
-  for (let i = 1; i <= 20; i++) {
-    fields[i].src = arrNames[i - 1].img;
-  }
+
   let winner;
   let winner1 = localStorage.getItem("player1");
   let winner2 = localStorage.getItem("player2");
@@ -411,10 +415,6 @@ const displayWinner = () => {
 
 const displayResult = () => {
   document.getElementById("result").style.display = "flex";
-  for (let i = 1; i <= 20; i++) {
-    fields[i].src = arrNames[i - 1].img;
-  }
-
   let name = localStorage.getItem("playerSolo");
   let timeInNumber = createNumberFrom(stopwatch.textContent);
   document.getElementById("name").innerHTML = name ? name : lang.playerSolo;
