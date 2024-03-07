@@ -87,21 +87,21 @@ const elements = {
     div: document.getElementById("player1"),
     val: document.getElementById("input1"),
     hide: document.getElementById("form1"),
-    show: document.getElementById("p1"),
+    show: document.getElementById("player1div"),
     name: "",
   },
   player2: {
     div: document.getElementById("player2"),
     val: document.getElementById("input2"),
     hide: document.getElementById("form2"),
-    show: document.getElementById("p2"),
+    show: document.getElementById("player2div"),
     name: "",
   },
   playerSolo: {
     div: document.getElementById("playerSolo"),
     val: document.getElementById("inputSolo"),
     hide: document.getElementById("formSolo"),
-    show: document.getElementById("pS"),
+    show: document.getElementById("playerSoloDiv"),
     name: "",
   },
 };
@@ -246,7 +246,7 @@ const match = (field) => {
     for (let i = 1; i <= 20; i++) {
       setTimeout(() => {
         fields[i].src = arrNames[i - 1].img;
-      }, i * 30);
+      }, i * 50);
     }
 
     if (localStorage.getItem("mode") === "versus" || "") {
