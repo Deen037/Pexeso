@@ -15,8 +15,6 @@ let language = themes[themeKey].language;
 let lang = languages[language];
 document.getElementById("input1").placeholder = lang.player1;
 document.getElementById("input2").placeholder = lang.player2;
-document.getElementById("sub1").value = lang.submit;
-document.getElementById("sub2").value = lang.submit;
 document.getElementsByClassName("winsLabel")[0].innerHTML = lang.wins;
 document.getElementsByClassName("winsLabel")[1].innerHTML = lang.wins;
 document.getElementById("youGo").innerHTML = lang.youGo;
@@ -90,7 +88,6 @@ const elements = {
     val: document.getElementById("input1"),
     hide: document.getElementById("form1"),
     show: document.getElementById("p1"),
-    sub: document.getElementById("sub1"),
     name: "",
   },
   player2: {
@@ -98,7 +95,6 @@ const elements = {
     val: document.getElementById("input2"),
     hide: document.getElementById("form2"),
     show: document.getElementById("p2"),
-    sub: document.getElementById("sub2"),
     name: "",
   },
   playerSolo: {
@@ -106,13 +102,13 @@ const elements = {
     val: document.getElementById("inputSolo"),
     hide: document.getElementById("formSolo"),
     show: document.getElementById("pS"),
-    sub: document.getElementById("subSolo"),
     name: "",
   },
 };
 
 const setPlayerName = (player) => {
   player.div.innerHTML = player.val.value;
+
   if (player.val.value) {
     player.hide.style.display = "none";
     player.show.style.display = "inline-block";
@@ -139,7 +135,15 @@ const addEventListeners = (player) => {
       setPlayerName(player);
     }
   });
-  player.sub.addEventListener("click", () => setPlayerName(player));
+
+  document.addEventListener("click", (event) => {
+    const targetElement = event.target;
+
+    if (player.hide.style.display === "block" && targetElement !== player.div) {
+      setPlayerName(player);
+      return;
+    }
+  });
 };
 
 addEventListeners(elements.player1);
@@ -441,7 +445,7 @@ const displayResult = () => {
 
 function show20Best() {
   let results = document.getElementById("top20");
-  let pharagraph = results.getElementsByTagName("p");
+  let pharagraph = results.getElementsByTagName("div");
 
   if (pharagraph.length > 0) {
     for (let j = pharagraph.length - 1; j >= 0; j--) {

@@ -4,14 +4,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(23, 23, 23);
-  display: flex;
-  flex-direction: column;
 }
 
 header {
   display: flex;
   padding-top: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   height: 70px;
 }
 #headerLeft,
@@ -19,7 +17,7 @@ header {
   width: 5%;
 }
 #headerMid {
-  width: 100%;
+  width: 90%;
 }
 
 i {
@@ -38,31 +36,25 @@ i:hover {
 .headerBottom {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  gap: 20px;
-}
-
-.headerBottom {
-  gap: 45px;
-}
-
-.players {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
 #form1,
 #form2 {
   display: none;
-  width: 20vw;
+  width: 15vw;
+}
+
+#form1 {
+  text-align: right;
 }
 
 #input1,
 #input2 {
   width: 10vw;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   background-color: transparent;
   outline: none;
   font-size: 20px;
@@ -70,30 +62,10 @@ i:hover {
   text-align: center;
 }
 
-#sub1,
-#sub2,
-#subSolo {
-  background-color: black;
-  border: none;
-  border-radius: 5px;
-}
-#sub1 {
-  color: rgb(255, 182, 193);
-}
-#sub2 {
-  color: rgb(173, 216, 230);
-}
-
 #score1,
-#score2 {
+#score2,
+h1 {
   color: rgb(221, 221, 221);
-  font-size: 30px;
-}
-#score1 {
-  margin-left: 30px;
-}
-#score2 {
-  margin-right: 30px;
 }
 
 h5,
@@ -103,15 +75,11 @@ h3 {
   padding: 0;
 }
 
-h1 {
-  color: rgb(221, 221, 221);
-}
-
 #p1,
 #p2 {
   margin: 0;
   padding: 0;
-  width: 20vw;
+  width: 15vw;
   text-align: center;
   display: block;
 }
@@ -216,10 +184,6 @@ p {
   padding-right: 10px;
   padding-bottom: 5px;
   width: 110px;
-}
-
-#subSolo {
-  color: rgb(150, 150, 150);
 }
 
 #pS {
@@ -329,8 +293,8 @@ nav {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
 }
 
 #boardRight {
