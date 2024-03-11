@@ -51,7 +51,7 @@ i:hover {
 #input2 {
   width: 15vw;
   border: none;
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
   background-color: transparent;
   outline: none;
   font-size: 16px;
