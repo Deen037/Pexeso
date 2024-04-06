@@ -5,6 +5,10 @@ let solo = document.getElementById("solo");
 let tournament = document.getElementById("tournament");
 let versus = document.getElementById("versus");
 
+if (localStorage.getItem("mode") === null) {
+  localStorage.setItem("mode", "versus");
+}
+
 function themeToogle(theme) {
   localStorage.setItem("theme", theme);
   location.reload();

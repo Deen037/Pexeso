@@ -249,7 +249,7 @@ const match = (field) => {
       }, i * 50);
     }
 
-    if (localStorage.getItem("mode") === "versus" || "") {
+    if (localStorage.getItem("mode") === "versus" || null) {
       displayWinner();
     }
     if (localStorage.getItem("mode") === "solo") {
