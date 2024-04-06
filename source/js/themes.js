@@ -98,7 +98,7 @@ export const themes = {
     12: { name: "done", img: "./source/img/blank.png" },
     language: "english",
   },
-  animals: {
+  detib: {
     1: { name: "", img: "./source/img/detib/1.jpg" },
     2: { name: "", img: "./source/img/detib/2.jpg" },
     3: { name: "", img: "./source/img/detib/3.jpg" },
@@ -113,7 +113,7 @@ export const themes = {
     12: { name: "", img: "./source/img/blank.png" },
     language: "english",
   },
-  detib: {
+  animals: {
     1: { name: "Bear", img: "./source/img/animals/bear.jpg" },
     2: { name: "dog", img: "./source/img/animals/dog.jpg" },
     3: { name: "rebbit", img: "./source/img/animals/rabbit.jpg" },
