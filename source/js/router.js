@@ -23,6 +23,10 @@ const routes = {
     themeKey = "rebenka";
     themes.style.display = "none";
   },
+  "/detib": function () {
+    themeKey = "detib";
+    themes.style.display = "none";
+  },
 };
 
 function router() {
