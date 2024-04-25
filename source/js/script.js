@@ -293,15 +293,6 @@ const twoClicksLoop = (field) => {
         click1.src = cards[11].img;
         click2.src = cards[11].img;
       }, 100);
-
-      // document.getElementById("field1").src = cards[11].img;
-      // document.getElementById("field1").classList.add("fade-out");
-      // // If you want to remove the fade-out class after a delay
-      // setTimeout(() => {
-      //   document.getElementById("field1").classList.remove("fade-out");
-      //   click1.src = cards[11].img;
-      //   click2.src = cards[11].img;
-      // }, 500);
     }
   } else {
     if (click1.src !== click2.src) {
