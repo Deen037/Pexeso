@@ -54,10 +54,10 @@ export const themes = {
     language: "english",
   },
   rebenka: {
-    1: { name: "cover", img: "./source/img/rebenka/cover.jpg" },
+    1: { name: "cover", img: "./source/img/rebenka/cover.png" },
     2: { name: "done", img: "./source/img/blank.png" },
     3: { name: "dedko", img: "./source/img/rebenka/dedko.jpg" },
-    4: { name: "deko", img: "./source/img/rebenka/deko.jpg" },
+    4: { name: "deko", img: "./source/img/rebenka/deko.png" },
     5: { name: "dusan", img: "./source/img/rebenka/dusan.jpg" },
     6: { name: "janko", img: "./source/img/rebenka/janko.jpg" },
     7: { name: "manka", img: "./source/img/rebenka/manka.jpg" },
