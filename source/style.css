@@ -281,9 +281,9 @@ nav {
   margin: 2px;
 }
 #card img {
-  width: 12vw;
+  width: 9vw;
   height: 9vw;
-  min-width: 100px;
+  min-width: 75px;
   min-height: 75px;
   border-radius: 10px;
   transition: opacity 0.5s ease-in-out;
