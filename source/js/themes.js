@@ -15,7 +15,7 @@ export const themes = {
     language: "english",
   },
   lili: {
-    1: { name: "cover", img: "./source/img/lili/logo.jpg" },
+    1: { name: "cover", img: "./source/img/lili/logo.png" },
     2: { name: "done", img: "./source/img/blank.png" },
     3: {
       name: "Naty/Luky/Jirka",
