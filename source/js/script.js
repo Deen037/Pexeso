@@ -29,29 +29,47 @@ let cards = [];
 function addAtributes() {
   for (let i = 1; i <= 20; i++) {
     fields[i] = document.getElementById("field" + i);
-    fields[i].src = themes[themeKey][11].img;
-    if (i < 12) {
-      cards[i] = {};
-    }
+    fields[i].src = themes[themeKey][1].img;
+    // if (i < 12) {
+    //   cards[i] = {};
+    // }
   }
 }
 
 addAtributes();
 
-function createThemeCards() {
-  for (let i = 1; i <= 12; i++) {
-    cards[i - 1] = {
-      name: `${themes[themeKey][i].name}`,
-      img: `${themes[themeKey][i].img}`,
+let randomTen = [];
+function createRandomObject(theme) {
+  while (randomTen.length < 10) {
+    let randomNum = Math.floor(Math.random() * Object.keys(theme).length);
+    if (randomNum === 0 || randomNum === 1 || randomNum === 2) {
+      //Skip
+    } else if (randomTen.includes(theme[randomNum])) {
+      //Skip
+    } else {
+      randomTen.push(theme[randomNum]);
+    }
+  }
+  randomTen.push(theme[1]);
+  randomTen.push(theme[2]);
+}
+
+createRandomObject(themes[themeKey]);
+
+function createThemeCards(theme) {
+  for (let i = 0; i < randomTen.length; i++) {
+    cards[i] = {
+      name: `${randomTen[i].name}`,
+      img: `${randomTen[i].img}`,
     };
     if (i < 11) {
-      cards[i - 1].x = (i - 1) * 2;
-      cards[i - 1].y = (i - 1) * 2 + 1;
+      cards[i].x = i * 2;
+      cards[i].y = i * 2 + 1;
     }
   }
 }
 
-createThemeCards();
+createThemeCards(themes[themeKey]);
 
 // set player names if exists
 
