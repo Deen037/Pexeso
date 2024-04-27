@@ -18,6 +18,8 @@ document.getElementById("lock").addEventListener("click", function () {
   var body = document.body;
   body.classList.toggle("no-scroll");
 
+  document.querySelector(".board").classList.toggle("fixed");
+
   // For touch-based devices
   if (body.classList.contains("noscroll")) {
     body.addEventListener("touchmove", preventDefault, { passive: false });
