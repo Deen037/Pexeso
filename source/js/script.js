@@ -10,9 +10,21 @@ import { themes } from "./themes.js";
 import { languages } from "./languages.js";
 
 //lock scrolls
+function preventDefault(e) {
+  e.preventDefault();
+}
 
 document.getElementById("lock").addEventListener("click", function () {
-  document.body.classList.toggle("no-scroll");
+  var body = document.body;
+  body.classList.toggle("no-scroll");
+
+  // For touch-based devices
+  if (body.classList.contains("noscroll")) {
+    body.addEventListener("touchmove", preventDefault, { passive: false });
+  } else {
+    body.removeEventListener("touchmove", preventDefault);
+  }
+
   document.getElementById("locked").classList.toggle("active");
   document.getElementById("unlocked").classList.toggle("active");
 });
