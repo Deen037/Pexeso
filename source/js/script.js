@@ -9,6 +9,14 @@ import { upload, getScores, scoreArr } from "./firebase.js";
 import { themes } from "./themes.js";
 import { languages } from "./languages.js";
 
+//lock scrolls
+
+document.getElementById("lock").addEventListener("click", function () {
+  document.body.classList.toggle("no-scroll");
+  document.getElementById("locked").classList.toggle("active");
+  document.getElementById("unlocked").classList.toggle("active");
+});
+
 //setLanguage
 
 let language = themes[themeKey].language;

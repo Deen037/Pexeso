@@ -6,6 +6,24 @@ body {
   background-color: rgb(23, 23, 23);
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
+.active {
+  display: none;
+}
+
+svg {
+  height: 30px;
+  width: 30px;
+}
+
+svg:hover {
+  cursor: pointer;
+  color: rgb(192, 192, 192);
+}
+
 header {
   display: flex;
   padding-top: 10px;
@@ -257,6 +275,12 @@ nav {
 #boardLeft,
 #boardRight {
   width: 15%;
+}
+
+#boardLeft {
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 #boardMid {
