@@ -26,6 +26,7 @@ body.no-scroll {
 svg {
   height: 30px;
   width: 30px;
+  color: rgb(137, 137, 137);
 }
 
 svg:hover {
