@@ -9,24 +9,9 @@ import { upload, getScores, scoreArr } from "./firebase.js";
 import { themes } from "./themes.js";
 import { languages } from "./languages.js";
 
-//lock scrolls
-function preventDefault(e) {
-  e.preventDefault();
-}
-
 document.getElementById("lock").addEventListener("click", function () {
-  var body = document.body;
-  body.classList.toggle("no-scroll");
-
+  document.body.classList.toggle("no-scroll");
   document.querySelector(".board").classList.toggle("fixed");
-
-  // For touch-based devices
-  if (body.classList.contains("noscroll")) {
-    body.addEventListener("touchmove", preventDefault, { passive: false });
-  } else {
-    body.removeEventListener("touchmove", preventDefault);
-  }
-
   document.getElementById("locked").classList.toggle("active");
   document.getElementById("unlocked").classList.toggle("active");
 });
