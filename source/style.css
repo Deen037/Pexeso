@@ -19,8 +19,13 @@ body.no-scroll {
   z-index: 1;
 }
 
-.active {
+.active,
+#lock {
   display: none;
+}
+
+#boardLeft {
+  height: 80vh;
 }
 
 svg {

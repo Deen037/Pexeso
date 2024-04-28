@@ -9,12 +9,18 @@ import { upload, getScores, scoreArr } from "./firebase.js";
 import { themes } from "./themes.js";
 import { languages } from "./languages.js";
 
-document.getElementById("lock").addEventListener("click", function () {
-  document.body.classList.toggle("no-scroll");
-  document.querySelector(".board").classList.toggle("fixed");
-  document.getElementById("locked").classList.toggle("active");
-  document.getElementById("unlocked").classList.toggle("active");
-});
+//lock
+
+if (localStorage.getItem("mode") === "solo") {
+  document.getElementById("lock").style.display = "block";
+
+  document.getElementById("boardLeft").addEventListener("click", function () {
+    document.body.classList.toggle("no-scroll");
+    document.querySelector(".board").classList.toggle("fixed");
+    document.getElementById("locked").classList.toggle("active");
+    document.getElementById("unlocked").classList.toggle("active");
+  });
+}
 
 //setLanguage
 
