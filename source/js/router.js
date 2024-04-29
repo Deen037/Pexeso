@@ -27,6 +27,10 @@ const routes = {
     themeKey = "detib";
     themes.style.display = "none";
   },
+  "/test": function () {
+    themeKey = "test";
+    themes.style.display = "none";
+  },
 };
 
 function router() {
